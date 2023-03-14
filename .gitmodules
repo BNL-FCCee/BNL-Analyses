@@ -4,4 +4,3 @@
 [submodule "FCCAnalyses_BNL_Dev"]
 	path = FCCAnalyses_BNL_Dev
 	url = git@github.com:BNL-FCCee/FCCAnalyses.git
-	branch = Add_Jet_Fcn
