@@ -47,6 +47,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 if(EOSoutput):
     outputDir = f"/eos/user/a/atishelm/ntuples/FCC/{JobName}/stage1/"
+    outputDirEos = f"/eos/user/a/atishelm/ntuples/FCC/{JobName}/stage1/"
     eosType = "eosuser"
 else:
     outputDir   = f"{JobName}/stage1/"
