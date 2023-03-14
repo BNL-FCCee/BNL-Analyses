@@ -54,6 +54,7 @@ else:
 nCPUS       = 4
 runBatch    = batch
 batchQueue = "longlunch" # 2 hours
+saveTabular = True
 #compGroup = "group_u_FCC.local_gen"
 
 #Add MySample_p8_ee_ZH_ecm240 as it is not an offical process
