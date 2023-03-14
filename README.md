@@ -11,14 +11,14 @@ Clone the repository, including the FCCAnalyses submodule(s).
 
 Via ssh:
 ```shell
-git clone --recurse-submodules git@github.com:BNL-FCCee/HInvisible.git HInvisible
-cd HInvisible
+git clone --recurse-submodules git@github.com:BNL-FCCee/BNL-Analyses.git BNL-Analyses
+cd BNL-Analyses
 ```
 
 or via https:
 ```shell
-git clone --recurse-submodules https://github.com/BNL-FCCee/HInvisible.git HInvisible
-cd HInvisible
+git clone --recurse-submodules https://github.com/BNL-FCCee/BNL-Analyses.git BNL-Analyses
+cd BNL-Analyses
 ```
 
 ## Initial Setup
