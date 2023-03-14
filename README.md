@@ -161,3 +161,10 @@ Added BNL dev submodule with:
 ```bash
 git submodule add -b Add_Jet_Fcn git@github.com:BNL-FCCee/FCCAnalyses.git FCCAnalyses_BNL_Dev
 ```
+
+### HTCondor 
+
+This seemed related to some HTCondor errors:
+
+https://fccsw-forum.web.cern.ch/t/issue-running-fccanalysis-software-on-ht-condor/142/6
+https://github.com/HEP-FCC/FCCAnalyses/pull/245/files
