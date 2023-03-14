@@ -1,3 +1,7 @@
 [submodule "FCCAnalyses"]
 	path = FCCAnalyses
 	url = https://github.com/HEP-FCC/FCCAnalyses.git
+[submodule "FCCAnalyses_BNL_Dev"]
+	path = FCCAnalyses_BNL_Dev
+	url = git@github.com:BNL-FCCee/FCCAnalyses.git
+	branch = Add_Jet_Fcn
