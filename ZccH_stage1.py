@@ -9,7 +9,7 @@ import os
 import urllib.request
 import yaml 
 
-configFile = "/afs/cern.ch/work/a/atishelm/private/HInvisible/RunConfig.yaml" # for the moment, need to specify full path so that HTCondor node can find this file (since afs is mounted). Need to check how to pass this as an input file to HTCondor job.
+configFile = "/afs/cern.ch/work/a/atishelm/private/FCC/BNL-Analyses/RunConfig.yaml" # for the moment, need to specify full path so that HTCondor node can find this file (since afs is mounted). Need to check how to pass this as an input file to HTCondor job.
 with open(configFile, 'r') as cfg:
     values = yaml.safe_load(cfg)
     

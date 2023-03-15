@@ -42,7 +42,7 @@ source setup_FCC_BNL_Dev.sh
 After initial setup, first make sure you have the latest versions of the submodules:
 
 ```bash
-git submodule update --recursive
+git submodule update --remote
 ```
 
 Then, one can source either the central version or BNL development version of `FCCAnalyses` with the following:
