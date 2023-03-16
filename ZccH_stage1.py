@@ -29,17 +29,20 @@ processList = {
     # 'wzp6_ee_ccH_Hgg_ecm240' : {'chunks':20},
     # 'wzp6_ee_ccH_HZa_ecm240' : {'chunks':20},
     # 'wzp6_ee_ccH_Hss_ecm240' : {'chunks':20},
-    #'wzp6_ee_ccH_Hcc_ecm240' : {'chunks':20},
+    # 'wzp6_ee_ccH_Hcc_ecm240' : {'chunks':20},
     # 'wzp6_ee_ccH_Hmumu_ecm240':{'chunks':20},
     # 'wzp6_ee_ccH_HZZ_ecm240' : {'chunks':20},	
     # 'wzp6_ee_ccH_Htautau_ecm240' : {'chunks':20},
     # 'wzp6_ee_ccH_Haa_ecm240' : {'chunks':20},
-    #'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
+    # 'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
 
-    # backgrounds
-    #'p8_ee_WW_ecm240' : {'chunks':20},
-    #'p8_ee_ZZ_ecm240' : {'chunks':20},
-    'p8_ee_Zqq_ecm240' : {'chunks':20}
+    # backgrounds. Option: 'fraction' : frac_value
+    # 'p8_ee_WW_ecm240' : {'fraction' : 0.0025, 'chunks':500},
+    # 'p8_ee_ZZ_ecm240' : {'fraction' : 0.0025, 'chunks':500},
+    # 'p8_ee_Zqq_ecm240' : {'fraction' : 0.0025, 'chunks':500}
+    # 'p8_ee_WW_ecm240' : {'fraction' : 0.0025, 'chunks':20},
+    # 'p8_ee_ZZ_ecm240' : {'fraction' : 0.0025, 'chunks':20},
+    'p8_ee_Zqq_ecm240' : {'fraction' : 0.0025, 'chunks':20}    
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -52,9 +55,9 @@ if(EOSoutput):
 else:
     outputDir   = f"{JobName}/stage1/"
 
-nCPUS       = 64
+nCPUS       = 8
 runBatch    = batch
-batchQueue = "longlunch" # 2 hours
+batchQueue = "longlunch" # 1 hour
 
 # Define any functionality which is not implemented in FCCAnalyses
 
@@ -64,6 +67,13 @@ ROOT::VecOps::RVec<double> SumFlavorScores(ROOT::VecOps::RVec<double> recojet_is
 
     double score_1, score_2, pair_score; 
     ROOT::VecOps::RVec<double> recojetpair_isFlavor;
+
+    // cannot compute any mass pair flavour score values, return a single non-physical value
+    if(recojet_isFlavor.size() < 2){
+        recojetpair_isFlavor.push_back(-99);
+        return recojetpair_isFlavor; 
+    }
+
 
     // For each jet, take its flavor score sum with the remaining jets. Stop at last jet.
     for(int i = 0; i < recojet_isFlavor.size()-1; ++i) {
@@ -116,7 +126,7 @@ weaver_model = get_file_path(url_model, local_model)
 from examples.FCCee.weaver.config import (
     variables_pfcand,
     variables_jet,
-    variables_event,
+    variables_event, # assumes at least 2 jets for event_invariant_mass variable
 )
 
 from addons.ONNXRuntime.python.jetFlavourHelper import JetFlavourHelper
@@ -144,7 +154,6 @@ class RDFanalysis:
         df = jetClusteringHelper.define(df)
 
         ## define jet flavour tagging parameters
-
         jetFlavourHelper = JetFlavourHelper(
             collections,
             jetClusteringHelper.jets,
@@ -155,13 +164,12 @@ class RDFanalysis:
         ## define observables for tagger
         df = jetFlavourHelper.define(df)
         df = df.Define("jet_p4", "JetConstituentsUtils::compute_tlv_jets({})".format(jetClusteringHelper.jets))
-        df = df.Define("event_invariant_mass", "JetConstituentsUtils::InvariantMass(jet_p4[0], jet_p4[1])") 
         df = df.Define("all_invariant_masses", "JetConstituentsUtils::all_invariant_masses(jet_p4)")
 
         ## tagger inference
-        df = jetFlavourHelper.inference(weaver_preproc, weaver_model, df) #.Define("recojetpair_isC", "SumFlavorScores(recojet_isC)")
-        df = df.Define("recojetpair_isC", "SumFlavorScores(recojet_isC)") # want to compute sum of "isC" scores for each jet pair. Important that you compute this in the same order as jet invariant masses.
-        df = df.Define("recojetpair_isB", "SumFlavorScores(recojet_isB)") # want to compute sum of "isB" scores for each jet pair. Important that you compute this in the same order as jet invariant masses.
+        df = jetFlavourHelper.inference(weaver_preproc, weaver_model, df) 
+        df = df.Define("recojetpair_isC", "SumFlavorScores(recojet_isC)") 
+        df = df.Define("recojetpair_isB", "SumFlavorScores(recojet_isB)") 
 
         return df
 
@@ -169,12 +177,14 @@ class RDFanalysis:
     # Mandatory: output function, please make sure you return the branchlist as a python list
     def output():
 
-        branches_pfcand = list(variables_pfcand.keys())
+        branchList = []
+
         branches_jet = list(variables_jet.keys())
         branches_event = list(variables_event.keys())
+        #branches_pfcand = list(variables_pfcand.keys()) # extra info 
 
-        branchList = branches_event + branches_jet + branches_pfcand
-        branchList += jetFlavourHelper.outputBranches()
+        branchList = branches_event + branches_jet # + branches_pfcand
+        #branchList += jetFlavourHelper.outputBranches()
         branchList += ["all_invariant_masses"]
         branchList += ["recojetpair_isC"]
         branchList += ["recojetpair_isB"]

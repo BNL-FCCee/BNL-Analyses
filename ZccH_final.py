@@ -9,7 +9,7 @@ Does batch mode not work for this step?
 
 import yaml 
 
-configFile = "/afs/cern.ch/work/a/atishelm/private/HInvisible/RunConfig.yaml" # for the moment, need to specify full path so that HTCondor node can find this file (since afs is mounted). Need to check how to pass this as an input file to HTCondor job.
+configFile = "/afs/cern.ch/work/a/atishelm/private/FCC/BNL-Analyses/RunConfig.yaml" # for the moment, need to specify full path so that HTCondor node can find this file (since afs is mounted). Need to check how to pass this as an input file to HTCondor job.
 with open(configFile, 'r') as cfg:
     values = yaml.safe_load(cfg)
     
@@ -35,9 +35,9 @@ processList = {
     'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
 
     # backgrounds
-    #'p8_ee_WW_ecm240' : {'chunks':20},
-    #'p8_ee_ZZ_ecm240' : {'chunks':20},
-    #'p8_ee_Zqq_ecm240' : {'chunks':20}
+    'p8_ee_WW_ecm240' : {'chunks':20},
+    'p8_ee_ZZ_ecm240' : {'chunks':20},
+    'p8_ee_Zqq_ecm240' : {'chunks':20}
 }
 
 #Link to the dictonary that contains all the cross section informations etc...
@@ -131,18 +131,18 @@ histoList = {
 
 # add variables in a smart way with python
 
-flavors = ["G", "Q", "S", "C", "B"]
-flavor_nbins, flavor_xmin, flavor_xmax = 40, 0, 1
+# flavors = ["G", "Q", "S", "C", "B"]
+# flavor_nbins, flavor_xmin, flavor_xmax = 40, 0, 1
 
-for flavor in flavors:
-    varName = f"recojet_is{flavor}"
-    histoList[varName] = {
-        "name" : varName,
-        "title" : varName,
-        "bin": flavor_nbins,
-        "xmin" : flavor_xmin,
-        "xmax" : flavor_xmax
-    }
+# for flavor in flavors:
+#     varName = f"recojet_is{flavor}"
+#     histoList[varName] = {
+#         "name" : varName,
+#         "title" : varName,
+#         "bin": flavor_nbins,
+#         "xmin" : flavor_xmin,
+#         "xmax" : flavor_xmax
+#     }
 
 
 constituent_types = ["mu", "el", "chad", "nhad", "gamma"]

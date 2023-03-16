@@ -8,7 +8,7 @@ The purpose of this python module is to run the plotting step of the FCC analysi
 
 import yaml 
 
-configFile = "/afs/cern.ch/work/a/atishelm/private/HInvisible/RunConfig.yaml" # for the moment, need to specify full path so that HTCondor node can find this file (since afs is mounted). Need to check how to pass this as an input file to HTCondor job.
+configFile = "/afs/cern.ch/work/a/atishelm/private/FCC/BNL-Analyses/RunConfig.yaml" # for the moment, need to specify full path so that HTCondor node can find this file (since afs is mounted). Need to check how to pass this as an input file to HTCondor job.
 with open(configFile, 'r') as cfg:
     values = yaml.safe_load(cfg)
     
@@ -50,12 +50,12 @@ variables = [
 ]
 
 
-# add more vars
-flavors = ["G", "Q", "S", "C", "B"]
+# # add more vars
+# flavors = ["G", "Q", "S", "C", "B"]
 
-for flavor in flavors:
-    varName = f"recojet_is{flavor}"
-    variables.append(varName)
+# for flavor in flavors:
+#     varName = f"recojet_is{flavor}"
+#     variables.append(varName)
 
 constituent_types = ["mu", "el", "chad", "nhad", "gamma"]
 const_nbins, const_xmin, const_xmax = 20, 0, 20
@@ -115,8 +115,6 @@ colors['ZccHtautau'] = 11
 
 #ROOT.gStyle.SetPalette(55)
 
-print("colors:",colors)
-
 # # https://loading.io/color/feature/Spectral-10/
 # RGBs = [
 #     [158, 1, 66],
@@ -138,8 +136,6 @@ print("colors:",colors)
 #     tmp_color = tmp_color.SetRGB(c1, c2, c3)
 #     print("tmp_color:",tmp_color)
 #     colors[key] = tmp_color
-
-print("colors:",colors)
 
 # VV 
 colors['WW'] = ROOT.kBlue+1
@@ -171,9 +167,9 @@ plots['ZccH'] = {
     },
 
     'backgrounds' : {
-        #'WW':['p8_ee_WW_ecm240'],
-        #'ZZ':['p8_ee_ZZ_ecm240'],
-        #'qq' : ['p8_ee_Zqq_ecm240']
+        'WW':['p8_ee_WW_ecm240'],
+        'ZZ':['p8_ee_ZZ_ecm240'],
+        'qq' : ['p8_ee_Zqq_ecm240']
         }
 }
 
@@ -194,8 +190,8 @@ plots['ZccH_combined'] = {
                   ],
     },
 
-    'backgrounds' : { #'VV' : ['p8_ee_WW_ecm240', 'p8_ee_ZZ_ecm240'],
-                      #'qq' : ['p8_ee_Zqq_ecm240']
+    'backgrounds' : { 'VV' : ['p8_ee_WW_ecm240', 'p8_ee_ZZ_ecm240'],
+                      'qq' : ['p8_ee_Zqq_ecm240']
                       }
 
 }
