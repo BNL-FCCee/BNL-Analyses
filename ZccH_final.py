@@ -27,17 +27,17 @@ processList = {
     # 'wzp6_ee_ccH_Hgg_ecm240' : {'chunks':20},
     # 'wzp6_ee_ccH_HZa_ecm240' : {'chunks':20},
     # 'wzp6_ee_ccH_Hss_ecm240' : {'chunks':20},
-    #'wzp6_ee_ccH_Hcc_ecm240' : {'chunks':20},
+    'wzp6_ee_ccH_Hcc_ecm240' : {'chunks':20},
     # 'wzp6_ee_ccH_Hmumu_ecm240':{'chunks':20},
     # 'wzp6_ee_ccH_HZZ_ecm240' : {'chunks':20},	
     # 'wzp6_ee_ccH_Htautau_ecm240' : {'chunks':20},
     # 'wzp6_ee_ccH_Haa_ecm240' : {'chunks':20},
-    'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
+    #'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
 
     # backgrounds
-    'p8_ee_WW_ecm240' : {'chunks':20},
-    'p8_ee_ZZ_ecm240' : {'chunks':20},
-    'p8_ee_Zqq_ecm240' : {'chunks':20}
+    #'p8_ee_WW_ecm240' : {'chunks':100},
+    #'p8_ee_ZZ_ecm240' : {'chunks':100},
+    #'p8_ee_Zqq_ecm240' : {'chunks':100}
 }
 
 #Link to the dictonary that contains all the cross section informations etc...
@@ -51,10 +51,11 @@ else:
     inputDir    = f"{JobName}/stage1/"
     outputDir   = f"{JobName}/final/"
 
-nCPUS       = 4
+nCPUS       = 64
 runBatch    = batch
 batchQueue = "longlunch" # 2 hours
 saveTabular = True
+
 #compGroup = "group_u_FCC.local_gen"
 
 #Add MySample_p8_ee_ZH_ecm240 as it is not an offical process
@@ -112,14 +113,14 @@ histoList = {
     "jet_phi":                 {"name" : "jet_phi",
                                "title" : "jet_phi",
                                "bin" : 20,
-                               "xmin" : -10,
-                               "xmax" : 10},
+                               "xmin" : 0,
+                               "xmax" : 6.4},
 
     "jet_theta":               {"name" : "jet_theta",
                                "title" : "jet_theta",
                                "bin" : 20,
-                               "xmin" : -10,
-                               "xmax" : 10},      
+                               "xmin" : 0,
+                               "xmax" : 3.3},      
 
     "jet_nconst":              {"name" : "jet_nconst",
                                "title" : "jet_nconst",
@@ -131,18 +132,18 @@ histoList = {
 
 # add variables in a smart way with python
 
-# flavors = ["G", "Q", "S", "C", "B"]
-# flavor_nbins, flavor_xmin, flavor_xmax = 40, 0, 1
+flavors = ["G", "Q", "S", "C", "B"]
+flavor_nbins, flavor_xmin, flavor_xmax = 40, 0, 1
 
-# for flavor in flavors:
-#     varName = f"recojet_is{flavor}"
-#     histoList[varName] = {
-#         "name" : varName,
-#         "title" : varName,
-#         "bin": flavor_nbins,
-#         "xmin" : flavor_xmin,
-#         "xmax" : flavor_xmax
-#     }
+for flavor in flavors:
+    varName = f"recojet_is{flavor}"
+    histoList[varName] = {
+        "name" : varName,
+        "title" : varName,
+        "bin": flavor_nbins,
+        "xmin" : flavor_xmin,
+        "xmax" : flavor_xmax
+    }
 
 
 constituent_types = ["mu", "el", "chad", "nhad", "gamma"]

@@ -49,13 +49,12 @@ variables = [
     "jet_nconst"
 ]
 
+# add more vars
+flavors = ["G", "Q", "S", "C", "B"]
 
-# # add more vars
-# flavors = ["G", "Q", "S", "C", "B"]
-
-# for flavor in flavors:
-#     varName = f"recojet_is{flavor}"
-#     variables.append(varName)
+for flavor in flavors:
+    varName = f"recojet_is{flavor}"
+    variables.append(varName)
 
 constituent_types = ["mu", "el", "chad", "nhad", "gamma"]
 const_nbins, const_xmin, const_xmax = 20, 0, 20
@@ -158,18 +157,18 @@ plots['ZccH'] = {
         #'ZccHgg' :       ['wzp6_ee_ccH_Hgg_ecm240'],
         #'ZccHZa' :       ['wzp6_ee_ccH_HZa_ecm240'],
         #'ZccHss':        ['wzp6_ee_ccH_Hss_ecm240'],
-        #'ZccHcc' :       ['wzp6_ee_ccH_Hcc_ecm240'],
+        'ZccHcc' :       ['wzp6_ee_ccH_Hcc_ecm240'],
         #'ZccHmumu' :       ['wzp6_ee_ccH_Hmumu_ecm240'],
         #'ZccHZZ':        ['wzp6_ee_ccH_HZZ_ecm240'],	
         #'ZccHtautau':        ['wzp6_ee_ccH_Htautau_ecm240'],
         #'ZccHaa':        ['wzp6_ee_ccH_Haa_ecm240'],
-        'ZccHbb':        ['wzp6_ee_ccH_Hbb_ecm240'],
+        #'ZccHbb':        ['wzp6_ee_ccH_Hbb_ecm240'],
     },
 
     'backgrounds' : {
-        'WW':['p8_ee_WW_ecm240'],
-        'ZZ':['p8_ee_ZZ_ecm240'],
-        'qq' : ['p8_ee_Zqq_ecm240']
+        #'WW':['p8_ee_WW_ecm240'],
+        #'ZZ':['p8_ee_ZZ_ecm240'],
+        #'qq' : ['p8_ee_Zqq_ecm240']
         }
 }
 
@@ -177,21 +176,21 @@ plots['ZccH_combined'] = {
 
     'signal' : {
 
-        'ZccH' : ['wzp6_ee_ccH_Hbb_ecm240', 
+        'ZccH' : [#'wzp6_ee_ccH_Hbb_ecm240', 
                   #'wzp6_ee_ccH_Hmumu_ecm240',
                   #'wzp6_ee_ccH_HWW_ecm240',
                   #'wzp6_ee_ccH_Hgg_ecm240',
                   #'wzp6_ee_ccH_HZa_ecm240',
                   #'wzp6_ee_ccH_Hss_ecm240',
-                  #'wzp6_ee_ccH_Hcc_ecm240',
+                  'wzp6_ee_ccH_Hcc_ecm240',
                   #'wzp6_ee_ccH_HZZ_ecm240',
                   #'wzp6_ee_ccH_Htautau_ecm240',
                   #'wzp6_ee_ccH_Haa_ecm240'
                   ],
     },
 
-    'backgrounds' : { 'VV' : ['p8_ee_WW_ecm240', 'p8_ee_ZZ_ecm240'],
-                      'qq' : ['p8_ee_Zqq_ecm240']
+    'backgrounds' : { #'VV' : ['p8_ee_WW_ecm240', 'p8_ee_ZZ_ecm240'],
+                      #'qq' : ['p8_ee_Zqq_ecm240']
                       }
 
 }
