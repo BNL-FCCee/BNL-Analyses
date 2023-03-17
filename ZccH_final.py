@@ -70,6 +70,7 @@ doTree = True
 # Dictionary of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     "NoSelection" : "1",
+    "4Jets" : "",
 }
 
 #Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
@@ -112,21 +113,21 @@ histoList = {
 
     "jet_phi":                 {"name" : "jet_phi",
                                "title" : "jet_phi",
-                               "bin" : 20,
+                               "bin" : 30,
                                "xmin" : 0,
                                "xmax" : 6.4},
 
     "jet_theta":               {"name" : "jet_theta",
                                "title" : "jet_theta",
-                               "bin" : 20,
+                               "bin" : 30,
                                "xmin" : 0,
                                "xmax" : 3.3},      
 
     "jet_nconst":              {"name" : "jet_nconst",
                                "title" : "jet_nconst",
-                               "bin" : 100,
+                               "bin" : 200,
                                "xmin" : 0,
-                               "xmax" : 100},                                                                                                                                                               
+                               "xmax" : 200},                                                                                                                                                               
 
 }
 

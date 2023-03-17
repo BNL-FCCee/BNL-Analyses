@@ -25,24 +25,21 @@ print("njets:",njets)
 
 processList = {
     # Z(cc)H by higgs final state 
-    # 'wzp6_ee_ccH_HWW_ecm240':{'chunks':20},
-    # 'wzp6_ee_ccH_Hgg_ecm240' : {'chunks':20},
-    # 'wzp6_ee_ccH_HZa_ecm240' : {'chunks':20},
-    # 'wzp6_ee_ccH_Hss_ecm240' : {'chunks':20},
+    #'wzp6_ee_ccH_HWW_ecm240':{'chunks':20},
+    #'wzp6_ee_ccH_Hgg_ecm240' : {'chunks':20},
+    #'wzp6_ee_ccH_HZa_ecm240' : {'chunks':20},
+    #'wzp6_ee_ccH_Hss_ecm240' : {'chunks':20},
+    #'wzp6_ee_ccH_Hmumu_ecm240':{'chunks':20},
+    #'wzp6_ee_ccH_HZZ_ecm240' : {'chunks':20},	
+    #'wzp6_ee_ccH_Htautau_ecm240' : {'chunks':20},
+    #'wzp6_ee_ccH_Haa_ecm240' : {'chunks':20},
     'wzp6_ee_ccH_Hcc_ecm240' : {'chunks':20},
-    # 'wzp6_ee_ccH_Hmumu_ecm240':{'chunks':20},
-    # 'wzp6_ee_ccH_HZZ_ecm240' : {'chunks':20},	
-    # 'wzp6_ee_ccH_Htautau_ecm240' : {'chunks':20},
-    # 'wzp6_ee_ccH_Haa_ecm240' : {'chunks':20},
-    #'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
+    'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
 
     # backgrounds. Option: 'fraction' : frac_value
-    #'p8_ee_WW_ecm240' : {'chunks':100},
-    #'p8_ee_ZZ_ecm240' : {'chunks':100},
-    #'p8_ee_Zqq_ecm240' : {'chunks':100}
-    # 'p8_ee_WW_ecm240' : {'fraction' : 0.0025, 'chunks':20},
-    # 'p8_ee_ZZ_ecm240' : {'fraction' : 0.0025, 'chunks':20},
-    #'p8_ee_Zqq_ecm240' : {'fraction' : 0.0025, 'chunks':20}    
+    'p8_ee_WW_ecm240' : {'chunks':500},
+    'p8_ee_ZZ_ecm240' : {'chunks':500},
+    'p8_ee_Zqq_ecm240' : {'chunks':500}
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -51,14 +48,14 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 if(EOSoutput):
     outputDir = f"/eos/user/a/atishelm/ntuples/FCC/{JobName}/stage1/"
-    outputDirEos = f"/eos/user/a/atishelm/ntuples/FCC/{JobName}/stage1/"
-    eosType = "eosuser"
+    #outputDirEos = f"/eos/user/a/atishelm/ntuples/FCC/{JobName}/stage1/"
+    #eosType = "eosuser"
 else:
     outputDir   = f"{JobName}/stage1/"
 
-nCPUS       = 64
+nCPUS       = 4
 runBatch    = batch
-batchQueue = "longlunch" # 2 hours
+batchQueue = "workday" 
 
 # Define any functionality which is not implemented in FCCAnalyses
 
@@ -182,9 +179,9 @@ class RDFanalysis:
 
         branches_jet = list(variables_jet.keys())
         branches_event = list(variables_event.keys())
-        branches_pfcand = list(variables_pfcand.keys()) # extra info 
+        #branches_pfcand = list(variables_pfcand.keys()) # extra info 
 
-        branchList = branches_event  + branches_jet # + branches_pfcand
+        branchList = branches_event  + branches_jet 
         branchList += jetFlavourHelper.outputBranches()
         branchList += ["all_invariant_masses"]
         branchList += ["recojetpair_isC"]
