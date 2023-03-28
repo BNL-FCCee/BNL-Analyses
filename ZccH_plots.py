@@ -28,6 +28,8 @@ ana_tex        = 'e^{+}e^{-} #rightarrow Z(cc)H'
 delphesVersion = '3.4.2'
 energy         = 240.0
 collider       = 'FCC-ee'
+addMoreVars = 0
+#allSamples = 1
 
 if(EOSoutput):
     inputDir = f"/eos/user/a/atishelm/ntuples/FCC/{JobName}/final/"
@@ -36,49 +38,70 @@ else:
 
 formats        = ['png','pdf']
 yaxis          = ['lin','log']
-stacksig       = ['nostack']
-#stacksig       = ['stack','nostack']
+stacksig       = ['stack','nostack']
 outdir         = f'/eos/user/a/atishelm/www/FCC/{JobName}/plots/'
 
 # add vars
 variables = [
-    "all_invariant_masses",
-    "event_njet",
-    "recojetpair_isC",
-    "recojetpair_isB",
-    "jet_nconst"
+    #"all_invariant_masses",
+    #"event_njet",
+    #"recojetpair_isC",
+    #"recojetpair_isB",
+    #"recoil_masses"
+    "recoil_masses_HiggsPeak"
+    #"jet_nconst"
 ]
 
-# add more vars
-flavors = ["G", "Q", "S", "C", "B"]
 
-for flavor in flavors:
-    varName = f"recojet_is{flavor}"
-    variables.append(varName)
+if(addMoreVars):
 
-constituent_types = ["mu", "el", "chad", "nhad", "gamma"]
-const_nbins, const_xmin, const_xmax = 20, 0, 20
-for const_type in constituent_types:
-    varName = f"jet_n{const_type}"
-    variables.append(varName)
+    # add more vars
+    flavors = ["G", "Q", "S", "C", "B"]
 
-kins = ["p", "e", "phi", "theta"]
-for kin in kins:
-    varName = f"jet_{kin}"
-    variables.append(varName)
+    for flavor in flavors:
+        varName = f"recojet_is{flavor}"
+        variables.append(varName)
 
+    constituent_types = ["mu", "el", "chad", "nhad", "gamma"]
+    const_nbins, const_xmin, const_xmax = 20, 0, 20
+    for const_type in constituent_types:
+        varName = f"jet_n{const_type}"
+        variables.append(varName)
+
+    kins = ["p", "e", "phi", "theta"]
+    for kin in kins:
+        varName = f"jet_{kin}"
+        variables.append(varName)
 
 # Dictionary with the analysis name as a key, and the list of selections to be plotted for this analysis. The name of the selections should be the same than in the final selection
 selections = {}
 selections['ZccH'] = [
-    "NoSelection",
+    "selNone",
+    "4Jets",
+    #"4JetsBpair", 
+    #"4JetsCpair"
+    "4JetsOneBpairHiggsMassWindow",
+    "4JetsOneCpairHiggsMassWindow",
 ]
 selections['ZccH_combined'] = [
-    "NoSelection",
+    "selNone",
+    "4Jets",
+    #"4JetsBpair", 
+    #"4JetsCpair"
+    "4JetsOneBpairHiggsMassWindow",
+    "4JetsOneCpairHiggsMassWindow",
 ]
 
 extralabel = {}
-extralabel['NoSelection'] = "No selections"
+extralabel['selNone'] = "No selections"
+extralabel['4Jets'] = "Exactly 4 jets"
+extralabel['4JetsBpair'] = "4jets + recojetpair_isB>1.8"
+extralabel['4JetsCpair'] = "4jets + recojetpair_isC>1.8"
+# extralabel['4JetsOneBpairHiggsMassWindow'] = "#splitline{Ex one jet pair}{B tagged, near Higgs window}"
+# extralabel['4JetsOneCpairHiggsMassWindow'] = "#splitline{Ex one jet pair}{C tagged, near Higgs window}"
+
+extralabel['4JetsOneBpairHiggsMassWindow'] = "Ex one B tagged jet pair"
+extralabel['4JetsOneCpairHiggsMassWindow'] = "Ex one C tagged jet pair"
 
 colors = {}
 
@@ -150,25 +173,25 @@ colors['VV'] = ROOT.kRed # background
 plots = {}
 plots['ZccH'] = {
 
+    
     'signal' : {
-        #'ZccHbb' : ['wzp6_ee_ccH_Hbb_ecm240'],
-        #'ZccHmumu': ['wzp6_ee_ccH_Hmumu_ecm240'],
-        #'ZccHWW' : ['wzp6_ee_ccH_HWW_ecm240'],
-        #'ZccHgg' :       ['wzp6_ee_ccH_Hgg_ecm240'],
-        #'ZccHZa' :       ['wzp6_ee_ccH_HZa_ecm240'],
-        #'ZccHss':        ['wzp6_ee_ccH_Hss_ecm240'],
+        'ZccHbb' : ['wzp6_ee_ccH_Hbb_ecm240'],
+        'ZccHmumu': ['wzp6_ee_ccH_Hmumu_ecm240'],
+        'ZccHWW' : ['wzp6_ee_ccH_HWW_ecm240'],
+        'ZccHgg' :       ['wzp6_ee_ccH_Hgg_ecm240'],
+        'ZccHZa' :       ['wzp6_ee_ccH_HZa_ecm240'],
+        'ZccHss':        ['wzp6_ee_ccH_Hss_ecm240'],
         'ZccHcc' :       ['wzp6_ee_ccH_Hcc_ecm240'],
-        #'ZccHmumu' :       ['wzp6_ee_ccH_Hmumu_ecm240'],
-        #'ZccHZZ':        ['wzp6_ee_ccH_HZZ_ecm240'],	
-        #'ZccHtautau':        ['wzp6_ee_ccH_Htautau_ecm240'],
-        #'ZccHaa':        ['wzp6_ee_ccH_Haa_ecm240'],
-        #'ZccHbb':        ['wzp6_ee_ccH_Hbb_ecm240'],
+        'ZccHmumu' :       ['wzp6_ee_ccH_Hmumu_ecm240'],
+        'ZccHZZ':        ['wzp6_ee_ccH_HZZ_ecm240'],	
+        'ZccHtautau':        ['wzp6_ee_ccH_Htautau_ecm240'],
+        'ZccHaa':        ['wzp6_ee_ccH_Haa_ecm240'],
     },
 
     'backgrounds' : {
-        #'WW':['p8_ee_WW_ecm240'],
-        #'ZZ':['p8_ee_ZZ_ecm240'],
-        #'qq' : ['p8_ee_Zqq_ecm240']
+            'WW':['p8_ee_WW_ecm240'],
+            'ZZ':['p8_ee_ZZ_ecm240'],
+            'qq' : ['p8_ee_Zqq_ecm240']
         }
 }
 
@@ -176,22 +199,24 @@ plots['ZccH_combined'] = {
 
     'signal' : {
 
-        'ZccH' : [#'wzp6_ee_ccH_Hbb_ecm240', 
-                  #'wzp6_ee_ccH_Hmumu_ecm240',
-                  #'wzp6_ee_ccH_HWW_ecm240',
-                  #'wzp6_ee_ccH_Hgg_ecm240',
-                  #'wzp6_ee_ccH_HZa_ecm240',
-                  #'wzp6_ee_ccH_Hss_ecm240',
-                  'wzp6_ee_ccH_Hcc_ecm240',
-                  #'wzp6_ee_ccH_HZZ_ecm240',
-                  #'wzp6_ee_ccH_Htautau_ecm240',
-                  #'wzp6_ee_ccH_Haa_ecm240'
+        'ZccH' : [
+                    'wzp6_ee_ccH_Hbb_ecm240', 
+                    'wzp6_ee_ccH_Hmumu_ecm240',
+                    'wzp6_ee_ccH_HWW_ecm240',
+                    'wzp6_ee_ccH_Hgg_ecm240',
+                    'wzp6_ee_ccH_HZa_ecm240',
+                    'wzp6_ee_ccH_Hss_ecm240',
+                    'wzp6_ee_ccH_Hcc_ecm240',
+                    'wzp6_ee_ccH_HZZ_ecm240',
+                    'wzp6_ee_ccH_Htautau_ecm240',
+                    'wzp6_ee_ccH_Haa_ecm240'
                   ],
     },
 
-    'backgrounds' : { #'VV' : ['p8_ee_WW_ecm240', 'p8_ee_ZZ_ecm240'],
-                      #'qq' : ['p8_ee_Zqq_ecm240']
-                      }
+    'backgrounds' : { 
+                      'VV' : ['p8_ee_WW_ecm240', 'p8_ee_ZZ_ecm240'],
+                      'qq' : ['p8_ee_Zqq_ecm240']
+                    }
 
 }
 

@@ -25,21 +25,21 @@ print("njets:",njets)
 
 processList = {
     # Z(cc)H by higgs final state 
-    #'wzp6_ee_ccH_HWW_ecm240':{'chunks':20},
-    #'wzp6_ee_ccH_Hgg_ecm240' : {'chunks':20},
-    #'wzp6_ee_ccH_HZa_ecm240' : {'chunks':20},
-    #'wzp6_ee_ccH_Hss_ecm240' : {'chunks':20},
-    #'wzp6_ee_ccH_Hmumu_ecm240':{'chunks':20},
-    #'wzp6_ee_ccH_HZZ_ecm240' : {'chunks':20},	
-    #'wzp6_ee_ccH_Htautau_ecm240' : {'chunks':20},
-    #'wzp6_ee_ccH_Haa_ecm240' : {'chunks':20},
+    'wzp6_ee_ccH_HWW_ecm240':{'chunks':20},
+    'wzp6_ee_ccH_Hgg_ecm240' : {'chunks':20},
+    'wzp6_ee_ccH_HZa_ecm240' : {'chunks':20},
+    'wzp6_ee_ccH_Hss_ecm240' : {'chunks':20},
+    'wzp6_ee_ccH_Hmumu_ecm240':{'chunks':20},
+    'wzp6_ee_ccH_HZZ_ecm240' : {'chunks':20},	
+    'wzp6_ee_ccH_Htautau_ecm240' : {'chunks':20},
+    'wzp6_ee_ccH_Haa_ecm240' : {'chunks':20},
     'wzp6_ee_ccH_Hcc_ecm240' : {'chunks':20},
     'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
 
     # backgrounds. Option: 'fraction' : frac_value
-    'p8_ee_WW_ecm240' : {'chunks':500},
-    'p8_ee_ZZ_ecm240' : {'chunks':500},
-    'p8_ee_Zqq_ecm240' : {'chunks':500}
+    #'p8_ee_WW_ecm240' : {'chunks':3740},
+    #'p8_ee_ZZ_ecm240' : {'chunks':562},
+    #'p8_ee_Zqq_ecm240' : {'chunks':1007}
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -87,6 +87,50 @@ ROOT::VecOps::RVec<double> SumFlavorScores(ROOT::VecOps::RVec<double> recojet_is
     }
 
     return recojetpair_isFlavor;
+}
+
+
+
+ROOT::VecOps::RVec<double> all_recoil_masses(ROOT::VecOps::RVec<TLorentzVector> all_jet_4vectors){
+  
+  double m_sqrts = 240;
+  auto recoil_p4 = TLorentzVector(0, 0, 0, m_sqrts);
+  TLorentzVector tv1, tv2, tvpair; 
+  double E, px, py, pz, recoil_mass;
+  ROOT::VecOps::RVec<double> recoil_masses;
+
+  // cannot compute any mass pair values, return a single non-physical value
+  if(all_jet_4vectors.size() < 2){
+    recoil_masses.push_back(-99);
+    return recoil_masses;  
+  }
+
+    // For each jet, take its recoil mass using the remaining jets. Stop at last jet.
+    for(int i = 0; i < all_jet_4vectors.size()-1; ++i) {
+
+        tv1 = all_jet_4vectors.at(i);
+
+        for(int j=i+1; j < all_jet_4vectors.size(); ++j){ // go until end
+
+            tv2 = all_jet_4vectors.at(j); 
+            E = tv1.E() + tv2.E();
+            px = tv1.Px() + tv2.Px();
+            py = tv1.Py() + tv2.Py();
+            pz = tv1.Pz() + tv2.Pz();
+
+            tvpair.SetPxPyPzE(px, py, pz, E);
+
+            recoil_p4 = TLorentzVector(0, 0, 0, m_sqrts);
+            recoil_p4 -= tvpair; 
+
+            recoil_mass = recoil_p4.M();
+            recoil_masses.push_back(recoil_mass);
+
+        }
+    }
+
+  return recoil_masses;
+
 }
 
 """) 
@@ -163,9 +207,12 @@ class RDFanalysis:
         df = jetFlavourHelper.define(df)
         df = df.Define("jet_p4", "JetConstituentsUtils::compute_tlv_jets({})".format(jetClusteringHelper.jets))
         df = df.Define("all_invariant_masses", "JetConstituentsUtils::all_invariant_masses(jet_p4)")
+        df = df.Define("recoil_masses", "all_recoil_masses(jet_p4)")
 
         ## tagger inference
         df = jetFlavourHelper.inference(weaver_preproc, weaver_model, df) 
+
+        ## define variables using tagger inference outputs
         df = df.Define("recojetpair_isC", "SumFlavorScores(recojet_isC)") 
         df = df.Define("recojetpair_isB", "SumFlavorScores(recojet_isB)") 
 
@@ -186,6 +233,7 @@ class RDFanalysis:
         branchList += ["all_invariant_masses"]
         branchList += ["recojetpair_isC"]
         branchList += ["recojetpair_isB"]
+        branchList += ["recoil_masses"]
 
         # remove duplicates 
         branchList = list(set(branchList))
