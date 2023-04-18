@@ -108,6 +108,29 @@ fccanalysis plots ZccH_plots.py
 
 Note that if you run via `HTCondor`, you can find useful batchoutput logging information in the `BatchOutputs` directory in whichever FCCAnalyses version you are using. For example, when running with `FCCAnalyses_BNL_Dev`, after submitting batch jobs, you can find batch information in `FCCAnalyses_BNL_Dev/BatchOutputs`.
 
+Single file commands to run on different processes:
+
+```
+fccanalysis run ZccH_stage1.py --output wzp6_ee_ccH_Hcc_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hcc_ecm240/events_056080797.root --ncpus 64 --nev 1000
+```
+
+```
+fccanalysis run ZccH_stage1.py --output wzp6_ee_ccH_Hbb_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hbb_ecm240/events_090228867.root --ncpus 64 --nev 1000
+```
+
+```
+fccanalysis run ZccH_stage1.py --output p8_ee_WW_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/p8_ee_WW_ecm240/events_077741545.root --ncpus 64 --nev 1000
+```
+
+```
+fccanalysis run ZccH_stage1.py --output p8_ee_ZZ_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/p8_ee_ZZ_ecm240/events_030772128.root --ncpus 64 --nev 1000
+```
+
+```
+fccanalysis run ZccH_stage1.py --output p8_ee_Zqq_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/p8_ee_Zqq_ecm240/events_088384807.root --ncpus 64 --nev 1000
+```
+
+
 ## Misc.
 
 in `/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hbb_ecm240/events_180562176.root`,  Jet#2.collectionID is 15, indicating this is the ReconstructedParticles collection of jets. 
