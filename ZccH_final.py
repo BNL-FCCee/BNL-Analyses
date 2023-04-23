@@ -51,10 +51,10 @@ else:
         #'wzp6_ee_ccH_Htautau_ecm240' : {'chunks':20},
         #'wzp6_ee_ccH_Haa_ecm240' : {'chunks':20},
         #'wzp6_ee_ccH_Hcc_ecm240' : {'chunks':20},
-        #'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
+        'wzp6_ee_ccH_Hbb_ecm240':{'chunks':20},
 
         # backgrounds. Option: 'fraction' : frac_value
-        'p8_ee_WW_ecm240' : {'chunks':3740},
+        #'p8_ee_WW_ecm240' : {'chunks':3740},
         #'p8_ee_ZZ_ecm240' : {'chunks':562},
         #'p8_ee_Zqq_ecm240' : {'chunks':1007}
         
@@ -126,21 +126,27 @@ for flavor in flavors:
 #print("ExOneJetPairNearHiggsCTagged_str:",ExOneJetPairNearHiggsCTagged_str)
 
 cutList = {
-    "selNone" : "1",
-    "4Jets" : "event_njet==4",
+    #"selNone" : "1",
+    #"4Jets" : "event_njet==4",
+
     #"4JetsOneBpair" : f"event_njet==4 && ( {ExOneBpair_str} ) == 1",
     #"4JetsOneCpair" : f"event_njet==4 && ( {ExOneCpair_str} ) == 1",
-    "4JetsOneBpairHiggsMassWindow" : f"event_njet==4 && ({ExOneJetPairNearHiggsBTagged_str})",
+
+    #"4JetsOneBpairHiggsMassWindow" : f"event_njet==4 && ({ExOneJetPairNearHiggsBTagged_str})",
     "4JetsOneCpairHiggsMassWindow" : f"event_njet==4 && ({ExOneJetPairNearHiggsCTagged_str})",
+    
+    #"4JetsOneCpairHiggsMassWindowOnlyThatPair" : f"event_njet==4 && ({ExOneJetPairNearHiggsCTagged_str}) ",
 }
 
 cutLabels = {
-    "selNone" : "No Selection",
-    "4Jets" : "Exactly 4 jets",
+    #"selNone" : "No Selection",
+    #"4Jets" : "Exactly 4 jets",
     #"4JetsOneBpair" : "Njets == 4, one B pair score $>$ 1.8",
     #"4JetsOneCpair" : "Njets == 4, one C pair score $>$ 1.8",
     "4JetsOneBpairHiggsMassWindow" : "Ex one jet pair B tagged, near Higgs window",
-    "4JetsOneCpairHiggsMassWindow" : "Ex one jet pair C tagged, near Higgs window"
+    "4JetsOneCpairHiggsMassWindow" : "Ex one jet pair C tagged, near Higgs window",
+    
+    "4JetsOneCpairHiggsMassWindowOnlyThatPair" : "Ex one jet pair C tagged, near Higgs window"
 }
 
 #Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
@@ -152,14 +158,14 @@ histoList = {
     #                           "xmin" : 0,
     #                           "xmax" : 250},
 
-    # "recoil_masses" :         {"name" : "recoil_masses", 
-    #                           "title" : "recoil_masses" , 
-    #                           "bin" : 50, 
-    #                           "xmin" : 0, 
-    #                           "xmax" : 250},
+    "recoil_masses" :         {"name" : "recoil_masses", 
+                               "title" : "Recoil mass" , 
+                               "bin" : 50, 
+                               "xmin" : 0, 
+                               "xmax" : 250},
 
     "recoil_masses_HiggsPeak" :{"name" : "recoil_masses", 
-                              "title" : "recoil_masses_HiggsPeak" , 
+                              "title" : "Recoil mass" , 
                               "bin" : 20, 
                               "xmin" : 115, 
                               "xmax" : 140},                              
@@ -170,11 +176,18 @@ histoList = {
     #                           "xmin" : 0,
     #                           "xmax" : 10},
 
-    # "recojetpair_isC" :       {"name":"recojetpair_isC", 
-    #                           "title" : "recojetpair_isC" ,
-    #                           "bin" : 40,
-    #                           "xmin" : 0,
-    #                           "xmax" : 2},                                           
+     "recojetpair_isC" :       {"name":"recojetpair_isC", 
+                               "title" : "Jet pair c-score" ,
+                               "bin" : 40,
+                               "xmin" : 0,
+                               "xmax" : 2},   
+
+     "Leading_recojetpair_isC" :{"name":"recojetpair_isC[0]", 
+                               "title" : "Leading jet pair c-score" ,
+                               "bin" : 40,
+                               "xmin" : 0,
+                               "xmax" : 2},                                  
+                                                                       
     # "recojetpair_isB" :       {"name":"recojetpair_isB", 
     #                           "title" : "recojetpair_isB" ,
     #                           "bin" : 40,

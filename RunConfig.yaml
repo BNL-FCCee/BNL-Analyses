@@ -1,6 +1,6 @@
 # configuration file 
 
-batch: 1
+batch: 0
 EOSoutput: 1
 JobName: "ZccH_4JetReco_MaxChunks"
 njets: 4
