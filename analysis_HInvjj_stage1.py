@@ -22,7 +22,7 @@ outputDir   = "outputs_HInvjj/stage1"
 nCPUS       = 1
 
 #Optional running on HTCondor, default is False
-runBatch    = True
+runBatch    = False
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "longlunch"
