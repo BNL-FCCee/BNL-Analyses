@@ -1,4 +1,4 @@
-# run as: fccanalysis run analysis_HInvjj_stage1.py
+# run as: fccanalysis run analysis_HInvjj_CLD_stage1.py
 
 #Mandatory: List of processes
 processList = {
