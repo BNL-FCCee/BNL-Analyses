@@ -4,7 +4,7 @@
 processList = {
     #'p8_ee_ZZ_ecm240':{},#Run the full statistics in one output file named <outputDir>/p8_ee_ZZ_ecm240.root
     #'p8_ee_WW_ecm240':{'fraction':0.5, 'chunks':2}, #Run 50% of the statistics in two files named <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
-    'wzp6_ee_mumuH_ecm240':{'fraction':1., 'output':'wzp6_ee_mumuH_ecm240'} #Run 100% of the statistics in one file named <outputDir>/p8_ee_ZH_ecm240_out.root (example on how to change the output name)
+    'wzp6_ee_mumuH_ecm240':{'fraction':0.1, 'output':'wzp6_ee_mumuH_ecm240'} #Run 100% of the statistics in one file named <outputDir>/p8_ee_ZH_ecm240_out.root (example on how to change the output name)
     #'wzp6_ee_mumuH_ecm240':{'chunks':5, 'output':'wzp6_ee_mumuH_ecm240'} #Run 100% of the statistics in one file named <outputDir>/p8_ee_ZH_ecm240_out.root (example on how to change the output name)
 
     
@@ -88,6 +88,41 @@ class RDFanalysis():
             .Define("recoil_M","ReconstructedParticle::get_mass(recoilParticle)")
             #.Filter("MET[0]>10.")
             #.Filter("zed_leptonic_recoil_m.size()>0")
+
+            ### Filter for Higgs to invisible, e.g. neutrinos ###
+            
+            # truth selection / filtering
+            .Alias("Particle1", "Particle#1.index")
+            .Define("Higgs", "FCCAnalyses::MCParticle::sel_pdgID(25, true)(Particle)")
+
+           # https://github.com/HEP-FCC/FCCAnalyses/blob/dce3af87057a930fa0e0cd55dc26f8e4ba7b5143/examples/FCCee/tutorials/vertexing/analysis_Bs2JpsiPhi_MCseeded.py
+
+           # MC indices of the decay Higgs (PDG = 25) -> nu_e+ (PDG = -12) nu_e- (PDG = 12) nu_mu+ (PDG = -14) nu_mu- (PDG = 14), etc.
+           # Retrieves a vector of int's which correspond to indices in the Particle block
+           # vector[0] = the mother, and then the daughters in the order specified, i.e. here
+           #       [1] = the nu_e+, [2] = the nu_e-, [3] = the nu_mu+, [4] = the nu_mu-
+           # Boolean arguments :
+           #    1st: stableDaughters. when set to true, the daughters specified in the list are looked
+           #             for among the final, stable particles that come out from the mother, i.e. the decay tree is
+           #             explored recursively if needed.
+           #        2nd: chargeConjugateMother
+           #        3rd: chargeConjugateDaughters
+           #        4th: inclusiveDecay: when set to false, if a mother is found, that decays
+           #             into the particles specified in the list plus other particle(s), this decay is not selected.
+           # If the event contains more than one such decays,only the first one is kept.
+            .Define("HiggsToInvIndices_4NUe",       "MCParticle::get_indices( 25, {-12,12,-12,12}, true, true, true, false) ( Particle, Particle1)" )
+            .Define("HiggsToInvIndices_2NUe_2NUmu", "MCParticle::get_indices( 25, {-14,14,-12,12}, true, true, true, false) ( Particle, Particle1)" )
+            .Define("HiggsToInvIndices_4NUe_2NUtau","MCParticle::get_indices( 25, {-16,16,-12,12}, true, true, true, false) ( Particle, Particle1)" )
+
+            .Define("HiggsToInvIndices_4NUmu",       "MCParticle::get_indices( 25, {-14,14,-14,14}, true, true, true, false) ( Particle, Particle1)" )
+            .Define("HiggsToInvIndices_4NUmu_2NUtau","MCParticle::get_indices( 25, {-16,16,-14,14}, true, true, true, false) ( Particle, Particle1)" )
+
+            .Define("HiggsToInvIndices_4NUtau","MCParticle::get_indices( 25, {-16,16,-16,16}, true, true, true, false) ( Particle, Particle1)" )
+
+           # select events for which the requested decay chain has been found:
+           #.Filter("HiggsToInvIndices.size() > 0")
+
+            .Filter("HiggsToInvIndices_4NUe.size()  > 0 || HiggsToInvIndices_2NUe_2NUmu.size()  > 0 || HiggsToInvIndices_4NUe_2NUtau.size()  > 0 || HiggsToInvIndices_4NUmu.size()  > 0 || HiggsToInvIndices_4NUmu_2NUtau.size()  > 0 || HiggsToInvIndices_4NUtau.size()  > 0  ")
 
 
         )
