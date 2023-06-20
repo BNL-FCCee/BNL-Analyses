@@ -1,20 +1,20 @@
 # run as: fccanalysis final analysis_HInvjj_final.py
 
 #Input directory where the files produced at the pre-selection level are
-#inputDir  = "outputs_HInvjj/stage1"
-inputDir  = "outputs_HInvjj_ScottTest/stage1"
+inputDir  = "outputs_HInvjj/stage1"
+#inputDir  = "outputs_HInvjj_ScottTest/stage1"
 
 #Input directory where the files produced at the pre-selection level are
-#outputDir  = "outputs_HInvjj/final/"
-outputDir  = "outputs_HInvjj_ScottTest/final/"
+outputDir  = "outputs_HInvjj/final/"
+#outputDir  = "outputs_HInvjj_ScottTest/final/"
 
 
 #Mandatory: List of processes
 processList = {
     #'p8_ee_ZZ_ecm240':{},#Run the full statistics in one output file named <outputDir>/p8_ee_ZZ_ecm240.root
     #'p8_ee_WW_ecm240':{'fraction':0.5, 'chunks':2}, #Run 50% of the statistics in two files named <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
-    #'wzp6_ee_qqH_ecm240':{} #Run over the full statistics from the previous stage's input file <inputDir>/p8_ee_ZH_ecm240_out.root. 
-    'output':{} #Run over the full statistics from the previous stage's input file <inputDir>/p8_ee_ZH_ecm240_out.root. 
+    'wzp6_ee_qqH_ecm240':{} #Run over the full statistics from the previous stage's input file <inputDir>/p8_ee_ZH_ecm240_out.root. 
+    #'output':{} #Run over the full statistics from the previous stage's input file <inputDir>/p8_ee_ZH_ecm240_out.root. 
 }
 
 
