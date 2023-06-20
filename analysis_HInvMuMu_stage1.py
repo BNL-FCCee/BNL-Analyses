@@ -4,7 +4,7 @@
 processList = {
     #'p8_ee_ZZ_ecm240':{},#Run the full statistics in one output file named <outputDir>/p8_ee_ZZ_ecm240.root
     #'p8_ee_WW_ecm240':{'fraction':0.5, 'chunks':2}, #Run 50% of the statistics in two files named <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
-    'wzp6_ee_mumuH_ecm240':{'fraction':0.1, 'output':'wzp6_ee_mumuH_ecm240'} #Run 100% of the statistics in one file named <outputDir>/p8_ee_ZH_ecm240_out.root (example on how to change the output name)
+    'wzp6_ee_mumuH_ecm240':{'fraction':1., 'output':'wzp6_ee_mumuH_ecm240'} #Run 100% of the statistics in one file named <outputDir>/p8_ee_ZH_ecm240_out.root (example on how to change the output name)
     #'wzp6_ee_mumuH_ecm240':{'chunks':5, 'output':'wzp6_ee_mumuH_ecm240'} #Run 100% of the statistics in one file named <outputDir>/p8_ee_ZH_ecm240_out.root (example on how to change the output name)
 
     
@@ -14,19 +14,20 @@ processList = {
 prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "outputs_HInvMuMu/stage1"
+outputDir   = "outputs_HInvMuMu_FullRun/stage1"
 
 #Optional: analysisName, default is ""
 #analysisName = "My Analysis"
 
 #Optional: ncpus, default is 4
-nCPUS       = 1
+nCPUS       = 4
 
 #Optional running on HTCondor, default is False
-#runBatch    = True
+runBatch    = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "longlunch"
+#batchQueue = "longlunch"
+batchQueue = "tomorrow"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 #compGroup = "group_u_FCC.local_gen"
@@ -75,6 +76,10 @@ class RDFanalysis():
 
             .Define("MET", "ReconstructedParticle::get_pt(MissingET)") #absolute value of MET
             #.Define("METSorted", "Sort(MET)") #absolute value of MET
+
+            .Define("jets", "ReconstructedParticle::sel_pt(15)(Jet)") # Loosest selection at this stage
+            # define number of jets
+            .Define("n_jets",  "ReconstructedParticle::get_n( jets ) ")
 
             # build a candidate Z boson
             .Define("ZCandidate",    "ReconstructedParticle::resonanceBuilder(91)(muons)")
@@ -140,6 +145,7 @@ class RDFanalysis():
             "ZBosonMass",
             "MET",
             "recoil_M",
+            "n_jets"
 
         ]
         return branchList
