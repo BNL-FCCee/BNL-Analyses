@@ -3,4 +3,4 @@
 	url = https://github.com/HEP-FCC/FCCAnalyses.git
 [submodule "FCCAnalyses_BNL_Dev"]
 	path = FCCAnalyses_BNL_Dev
-	url = git@github.com:BNL-FCCee/FCCAnalyses.git
+	url = https://github.com/BNL-FCCee/FCCAnalyses.git
