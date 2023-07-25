@@ -21,8 +21,6 @@ git clone --recurse-submodules https://github.com/BNL-FCCee/BNL-Analyses.git BNL
 cd BNL-Analyses
 ```
 
-## Initial Setup
-
 Note that there are two submodules defined in the repository: `FCCAnalyses` and `FCCAnalyses_BNL_dev`. `FCCAnalyses` points to the [central FCCAnalyses framework](https://github.com/HEP-FCC/FCCAnalyses) used by the FCC community. However, if one wants to run an analysis configuration using a custom addition to the framework which has not yet been merged into the central repository, one can run with that configuration by pushing it to the [BNL development fork](https://github.com/BNL-FCCee/FCCAnalyses/tree/master) of FCCAnalyses, and sourcing that submodule instead of the central one while working. 
 
 For the initial setup of the central `FCCAnalyses` repository, run the command:
@@ -39,9 +37,10 @@ source setup_FCC_BNL_Dev.sh
 
 ## Regular Setup
 
-After initial setup, first make sure you have the latest versions of the submodules:
+After initial setup, first make sure you have the latest versions of the submodules, assuming you don't want to work with the non-latest version:
 
 ```bash
+cd BNL-Analyses
 git submodule update --remote
 ```
 
@@ -130,7 +129,6 @@ fccanalysis run ZccH_stage1.py --output p8_ee_ZZ_ecm240.root --files-list /eos/e
 fccanalysis run ZccH_stage1.py --output p8_ee_Zqq_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/p8_ee_Zqq_ecm240/events_088384807.root --ncpus 64 --nev 1000
 ```
 
-
 ## Misc.
 
 in `/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hbb_ecm240/events_180562176.root`,  Jet#2.collectionID is 15, indicating this is the ReconstructedParticles collection of jets. 
@@ -183,6 +181,13 @@ Added BNL dev submodule with:
 
 ```bash
 git submodule add -b Add_Jet_Fcn git@github.com:BNL-FCCee/FCCAnalyses.git FCCAnalyses_BNL_Dev
+```
+
+Update submodules:
+
+```
+cd BNL-Analyses
+git submodule update --remote
 ```
 
 ### HTCondor 
