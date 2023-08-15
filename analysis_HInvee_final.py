@@ -1,11 +1,11 @@
 # run as: fccanalysis final analysis_HInvMuMu_final.py
 
 #Input directory where the files produced at the pre-selection level are
-inputDir  = "outputs_HInvee_CLIC/stage1"
+inputDir  = "outputs_HInvee_CLD/stage1"
 #inputDir  = "outputs_HInvMuMu_CLD/stage1"
 
 #Input directory where the files produced at the pre-selection level are
-outputDir  = "outputs_HInvee_CLIC/final/"
+outputDir  = "outputs_HInvee_CLD/final/"
 #outputDir  = "outputs_HInvMuMu_CLD/final/"
 
 
@@ -61,7 +61,7 @@ cutList = {
 
 #Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
 histoList = {
-    "mu_pT":{"name":"electrons_pt","title":"mu pT [GeV]","bin":100,"xmin":0,"xmax":-1},
+    "electrons_pt":{"name":"electrons_pt","title":"mu pT [GeV]","bin":100,"xmin":0,"xmax":-1},
     "ZBosonPt":{"name":"ZBosonPt","title":"ZBosonPt [GeV]","bin":100,"xmin":0,"xmax":-1},
     "ZBosonMass":{"name":"ZBosonMass","title":"m_Z [GeV]","bin":100,"xmin":0,"xmax":-1},
     #"MET":{"name":"MET","title":"MET [GeV]","bin":100,"xmin":0,"xmax":-1},
