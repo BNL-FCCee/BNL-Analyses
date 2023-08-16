@@ -1,11 +1,13 @@
-# run as: fccanalysis final analysis_HInvMuMu_final.py
+# run as: fccanalysis final analysis_HInvee_final.py
 
 #Input directory where the files produced at the pre-selection level are
-inputDir  = "outputs_HInvee_CLD/stage1"
+inputDir  = "outputs_HInvee_IDEA/stage1"
+#inputDir  = "outputs_HInvee_CLD/stage1"
 #inputDir  = "outputs_HInvMuMu_CLD/stage1"
 
 #Input directory where the files produced at the pre-selection level are
-outputDir  = "outputs_HInvee_CLD/final/"
+outputDir  = "outputs_HInvee_IDEA/final/"
+#outputDir  = "outputs_HInvee_CLD/final/"
 #outputDir  = "outputs_HInvMuMu_CLD/final/"
 
 
@@ -14,7 +16,8 @@ processList = {
     #'p8_ee_ZZ_ecm240':{},#Run the full statistics in one output file named <outputDir>/p8_ee_ZZ_ecm240.root
     #'p8_ee_WW_ecm240':{'fraction':0.5, 'chunks':2}, #Run 50% of the statistics in two files named <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
     #'wzp6_ee_mumuH_ecm240':{} #Run over the full statistics from the previous stage's input file <inputDir>/p8_ee_ZH_ecm240_out.root. 
-    'output':{} # use this when running over Scott CLD samples 
+    'wzp6_ee_eeH_ecm240':{} #Run over the full statistics from the previous stage's input file <inputDir>/p8_ee_ZH_ecm240_out.root. 
+    #'output':{} # use this when running over Scott CLD samples 
 
 }
 
@@ -63,7 +66,7 @@ cutList = {
 histoList = {
     "electrons_pt":{"name":"electrons_pt","title":"mu pT [GeV]","bin":100,"xmin":0,"xmax":-1},
     "ZBosonPt":{"name":"ZBosonPt","title":"ZBosonPt [GeV]","bin":100,"xmin":0,"xmax":-1},
-    "ZBosonMass":{"name":"ZBosonMass","title":"m_Z [GeV]","bin":100,"xmin":0,"xmax":-1},
+    "ZBosonMass":{"name":"ZBosonMass","title":"m_Z [GeV]","bin":200,"xmin":0,"xmax":200},
     #"MET":{"name":"MET","title":"MET [GeV]","bin":100,"xmin":0,"xmax":-1},
     "recoil_M":{"name":"recoil_M","title":"recoil_M [GeV]","bin":200,"xmin":100,"xmax":200},
 
