@@ -13,8 +13,8 @@ outputDir  = "outputs_HInvMuMu_FullRun/final/"
 processList = {
     #'p8_ee_ZZ_ecm240':{},#Run the full statistics in one output file named <outputDir>/p8_ee_ZZ_ecm240.root
     #'p8_ee_WW_ecm240':{'fraction':0.5, 'chunks':2}, #Run 50% of the statistics in two files named <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
-    'wzp6_ee_mumuH_ecm240':{} #Run over the full statistics from the previous stage's input file <inputDir>/p8_ee_ZH_ecm240_out.root. 
-    #'output':{} # use this when running over Scott CLD samples 
+    #'wzp6_ee_mumuH_ecm240':{} #Run over the full statistics from the previous stage's input file <inputDir>/p8_ee_ZH_ecm240_out.root. 
+    'output':{} # use this when running over Scott CLD samples 
 
 }
 
