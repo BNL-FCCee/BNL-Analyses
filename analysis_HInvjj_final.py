@@ -1,11 +1,11 @@
 # run as: fccanalysis final analysis_HInvjj_final.py
 
 #Input directory where the files produced at the pre-selection level are
-inputDir  = "outputs_HInvjj/stage1"
+inputDir  = "outputs_HInvjj_IDEA/stage1"
 #inputDir  = "outputs_HInvjj_ScottTest/stage1"
 
 #Input directory where the files produced at the pre-selection level are
-outputDir  = "outputs_HInvjj/final/"
+outputDir  = "outputs_HInvjj_IDEA/final/"
 #outputDir  = "outputs_HInvjj_ScottTest/final/"
 
 
@@ -61,7 +61,7 @@ cutList = {
 histoList = {
     "jets_pt":{"name":"jets_pt","title":"jet pT [GeV]","bin":100,"xmin":0,"xmax":-1},
     "ZBosonPt":{"name":"ZBosonPt","title":"ZBosonPt [GeV]","bin":100,"xmin":0,"xmax":-1},
-    "ZBosonMass":{"name":"ZBosonMass","title":"m_Z [GeV]","bin":100,"xmin":0,"xmax":-1},
+    "ZBosonMass":{"name":"ZBosonMass","title":"m_Z [GeV]","bin":200,"xmin":0,"xmax":200},
     #"MET":{"name":"MET","title":"MET [GeV]","bin":100,"xmin":0,"xmax":-1},
     "recoil_M":{"name":"recoil_M","title":"recoil_M [GeV]","bin":200,"xmin":100,"xmax":200},
 
