@@ -37,4 +37,5 @@ kinit atishelm@CERN.CH
 alias 'l=ls -lrt --color=auto'
 alias 'gst=git status'
 stty erase '^?' # fix vim backspace issue
+alias grep='grep --color=auto'
 ```
