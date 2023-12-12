@@ -7,3 +7,11 @@ Currently, one known difference is that when building on SDCC, one must add the 
 ```
 link_directories(/cvmfs/sw.hsf.org/spackages7/intel-tbb/2020.3/x86_64-centos7-gcc11.2.0-opt/ey3ft/lib /cvmfs/sw.hsf.org/spackages7/zlib/1.2.13/x86_64-centos7-gcc11.2.0-opt/2wmsk/lib)
 ```
+
+## 12 December 2023 setup
+
+When cloning the master branch of `FCCAnalyses`, I found I had to source this stack of key4hep on the cluster:
+
+```
+source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/*/setup.sh
+```
