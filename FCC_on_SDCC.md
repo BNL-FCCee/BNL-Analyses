@@ -10,10 +10,12 @@ link_directories(/cvmfs/sw.hsf.org/spackages7/intel-tbb/2020.3/x86_64-centos7-gc
 
 ## 12 December 2023 setup
 
-When cloning the master branch of `FCCAnalyses`, I found I had to source this stack of key4hep on the cluster:
+When cloning the master branch of `FCCAnalyses`, I found I had to source a particular key4hep stack and build like so:
 
 ```
 source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/*/setup.sh
+source setup.sh
+fccanalysis build
 ```
 
 Run the ZH hadronic ntupler:
