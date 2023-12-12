@@ -15,3 +15,9 @@ When cloning the master branch of `FCCAnalyses`, I found I had to source this st
 ```
 source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/*/setup.sh
 ```
+
+Run the ZH hadronic ntupler:
+
+```
+fccanalysis run ZH_Hadronic_stage1.py --output wzp6_ee_ccH_Hcc_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hcc_ecm240/events_056080797.root --ncpus 64 --nev 10
+```
