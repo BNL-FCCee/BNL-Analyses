@@ -14,7 +14,7 @@ Example ssh into BNL cluster:
 
 ```
 sudo ssh -i .ssh/id_rsa atishelma@ssh.sdcc.bnl.gov
-rterm -i spar0103
+rterm -i spar0103 # or ssh atishelma@spar0103.usatlas.bnl.gov
 bash
 ```
 
