@@ -10,6 +10,14 @@ link_directories(/cvmfs/sw.hsf.org/spackages7/intel-tbb/2020.3/x86_64-centos7-gc
 
 ## 12 December 2023 setup
 
+Example ssh into BNL cluster:
+
+```
+sudo ssh -i .ssh/id_rsa atishelma@ssh.sdcc.bnl.gov
+rterm -i spar0103
+bash
+```
+
 When cloning the master branch of `FCCAnalyses`, I found I had to source a particular key4hep stack and build like so:
 
 ```
