@@ -49,3 +49,17 @@ alias 'gst=git status'
 stty erase '^?' # fix vim backspace issue
 alias grep='grep --color=auto'
 ```
+
+Stat analysis related commands after producing ntuples:
+
+In CharmCutCode repo, to process one file:
+
+```
+runAnalysis --nEvents 1000 --inputFileList /eos/user/a/atishelm/ntuples/FCC/ZH_Hadronic_4JetReco/wzp6_ee_ccH_Hbb_ecm240/chunk0.root --analType SelfCoupling --sampleName wzp6_ee_ccH_Hbb_ecm240 --processName Hbb
+```
+
+Run over everything with condor:
+
+```
+
+```
