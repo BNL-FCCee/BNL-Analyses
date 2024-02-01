@@ -7,7 +7,6 @@ Example ssh into BNL cluster:
 ```
 sudo ssh -i .ssh/id_rsa atishelma@ssh.sdcc.bnl.gov # asks you for your PC password
 rterm -i spar0103 # or ssh atishelma@spar0103.usatlas.bnl.gov - asks you for your bnl account password
-bash
 ```
 
 Clone `FCCAnalyses`:
@@ -44,6 +43,12 @@ change `outputDir` variable in `ZH_Hadronic_stage1.py` to desired output locatio
 fccanalysis run ZH_Hadronic_stage1.py --output wzp6_ee_ccH_Hcc_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hcc_ecm240/events_056080797.root --nev 10
 ```
 
+check that your output file is there:
+
+```
+root -l <outputDir>/wzp6_ee_ccH_Hcc_ecm240.root
+```
+
 to submit on `HTCondor`, edit the `ZH_Hadronic_stage1.py` configuration file parameters to the desired values, for example:
 
 ```
@@ -52,6 +57,14 @@ EOSoutput = 0 # output to EOS
 JobName = "ZHadronic_4JetReco" # job name used for output directory
 njets = 4 # number of jets in exclusive reclustering
 outputDir   = f"/usatlas/atlas01/atlasdisk/users/<BNLclusterUsername>/{JobName}/stage1/"
+```
+
+and in the same file, choose the samples to run over, for example just one ZH process:
+
+```
+processList = {
+    "wzp6_ee_bbH_Hbb_ecm240" : {'chunks' : 2},
+}
 ```
 
 then run without the extra flags from before:
