@@ -1,5 +1,7 @@
 # FCC on SDCC
 
+## Ntuple production
+
 Quickstart:
 
 Example ssh into BNL cluster:
@@ -130,6 +132,10 @@ Total for query: 1565 jobs; 0 completed, 0 removed, 1394 idle, 171 running, 0 he
 Total for atishelma: 1565 jobs; 0 completed, 0 removed, 1394 idle, 171 running, 0 held, 0 suspended 
 Total for all users: 1567 jobs; 0 completed, 0 removed, 1394 idle, 173 running, 0 held, 0 suspended
 ```
+
+## Selections and categorization
+
+## Statistical interpretation
 
 ______________________________
 ______________________________
