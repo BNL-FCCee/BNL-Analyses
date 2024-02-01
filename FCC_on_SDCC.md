@@ -1,5 +1,76 @@
 # FCC on SDCC
 
+Quickstart:
+
+Example ssh into BNL cluster:
+
+```
+sudo ssh -i .ssh/id_rsa atishelma@ssh.sdcc.bnl.gov # asks you for your PC password
+rterm -i spar0103 # or ssh atishelma@spar0103.usatlas.bnl.gov - asks you for your bnl account password
+bash
+```
+
+Clone `FCCAnalyses`:
+
+```
+mkdir FCC_at_BNL
+cd FCC_at_BNL
+```
+
+via https:
+
+```
+git clone https://github.com/BNL-FCCee/FCCAnalyses.git -b ZH_Hadronic_SelfCoupling
+```
+
+via ssh:
+
+```
+git clone git@github.com:BNL-FCCee/FCCAnalyses.git -b ZH_Hadronic_SelfCoupling
+```
+
+set up:
+
+```
+cd FCCAnalyses
+source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/*/setup.sh
+source setup.sh
+fccanalysis build
+```
+
+change `outputDir` variable in `ZH_Hadronic_stage1.py` to desired output location, then process a few files:
+
+```
+fccanalysis run ZH_Hadronic_stage1.py --output wzp6_ee_ccH_Hcc_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hcc_ecm240/events_056080797.root --nev 10
+```
+
+to submit on `HTCondor`, edit the `ZH_Hadronic_stage1.py` configuration file parameters to the desired values, for example:
+
+```
+batch = 1 # use HTCondor
+EOSoutput = 0 # output to EOS
+JobName = "ZHadronic_4JetReco" # job name used for output directory
+njets = 4 # number of jets in exclusive reclustering
+outputDir   = f"/usatlas/atlas01/atlasdisk/users/<BNLclusterUsername>/{JobName}/stage1/"
+```
+
+then run without the extra flags from before:
+
+```
+fccanalysis run ZH_Hadronic_stage1.py
+```
+
+see if your jobs were submitted:
+
+```
+condor_q
+condor_q -batch
+```
+
+______________________________
+______________________________
+______________________________
+
 ## Extra information
 
 Cloning and building the [`FCCAnalyses`](https://github.com/HEP-FCC/FCCAnalyses) repository on the [BNL SDCC](https://www.sdcc.bnl.gov/) ATLAS cluster should largely follow the same steps as cloning and building the repository on [`lxplus`](https://abpcomputing.web.cern.ch/computing_resources/lxplus/).
