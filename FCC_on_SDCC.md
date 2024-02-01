@@ -133,6 +133,12 @@ Total for atishelma: 1565 jobs; 0 completed, 0 removed, 1394 idle, 171 running, 
 Total for all users: 1567 jobs; 0 completed, 0 removed, 1394 idle, 173 running, 0 held, 0 suspended
 ```
 
+You can also monitor your condor jobs here:
+
+https://monitoring.sdcc.bnl.gov/grafana/d/000000006/tier-3?orgId=1&from=now-24h&to=now
+
+![grafana screenshot](Images/condor_grafana_screenshot.png)
+
 ## Selections and categorization
 
 ## Statistical interpretation
