@@ -35,6 +35,8 @@ cd FCCAnalyses
 source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/*/setup.sh
 source setup.sh
 fccanalysis build
+...
+model_dir = "<path/to/repo>/FCCAnalyses"
 ```
 
 change `outputDir` variable in `ZH_Hadronic_stage1.py` to desired output location, then process a few files:
@@ -78,6 +80,55 @@ see if your jobs were submitted:
 ```
 condor_q
 condor_q -batch
+```
+
+from a full production of many processes, you should see something like:
+
+```
+[spar0103] /usatlas/u/atishelma/FCC/FCCAnalyses > condor_q -batch
+
+-- Schedd: spar0103.usatlas.bnl.gov : <130.199.48.19:9618?... @ 02/01/24 06:17:17
+OWNER     BATCH_NAME     SUBMITTED   DONE   RUN    IDLE  TOTAL JOB_IDS
+atishelma ID: 1656494   2/1  06:14      _      1      _      1 1656494.0
+atishelma ID: 1656495   2/1  06:14      _      2      _      2 1656495.0-1
+atishelma ID: 1656496   2/1  06:14      _      2      _      2 1656496.0-1
+atishelma ID: 1656497   2/1  06:14      _      2      _      2 1656497.0-1
+atishelma ID: 1656498   2/1  06:15      _      2      _      2 1656498.0-1
+atishelma ID: 1656499   2/1  06:15      _      2      _      2 1656499.0-1
+atishelma ID: 1656500   2/1  06:15      _      2      _      2 1656500.0-1
+atishelma ID: 1656501   2/1  06:15      _      2      _      2 1656501.0-1
+atishelma ID: 1656502   2/1  06:15      _      2      _      2 1656502.0-1
+atishelma ID: 1656503   2/1  06:15      _      2      _      2 1656503.0-1
+atishelma ID: 1656504   2/1  06:15      _      2      _      2 1656504.0-1
+atishelma ID: 1656505   2/1  06:15      _      2      _      2 1656505.0-1
+atishelma ID: 1656506   2/1  06:15      _      2      _      2 1656506.0-1
+atishelma ID: 1656507   2/1  06:15      _      2      _      2 1656507.0-1
+atishelma ID: 1656508   2/1  06:15      _      2      _      2 1656508.0-1
+atishelma ID: 1656509   2/1  06:15      _      2      _      2 1656509.0-1
+atishelma ID: 1656510   2/1  06:15      _      2      _      2 1656510.0-1
+atishelma ID: 1656511   2/1  06:15      _      2      _      2 1656511.0-1
+atishelma ID: 1656512   2/1  06:15      _      2      _      2 1656512.0-1
+atishelma ID: 1656513   2/1  06:15      _      2      _      2 1656513.0-1
+atishelma ID: 1656514   2/1  06:15      _      2      _      2 1656514.0-1
+atishelma ID: 1656515   2/1  06:15      _      2      _      2 1656515.0-1
+atishelma ID: 1656516   2/1  06:15      _      2      _      2 1656516.0-1
+atishelma ID: 1656517   2/1  06:15      _      2      _      2 1656517.0-1
+atishelma ID: 1656518   2/1  06:15      _      2      _      2 1656518.0-1
+atishelma ID: 1656519   2/1  06:15      _      2      _      2 1656519.0-1
+atishelma ID: 1656520   2/1  06:15      _      2      _      2 1656520.0-1
+atishelma ID: 1656521   2/1  06:15      _      2      _      2 1656521.0-1
+atishelma ID: 1656522   2/1  06:15      _      2      _      2 1656522.0-1
+atishelma ID: 1656523   2/1  06:15      _      2      _      2 1656523.0-1
+atishelma ID: 1656524   2/1  06:15      _      2      _      2 1656524.0-1
+atishelma ID: 1656525   2/1  06:15      _      2      _      2 1656525.0-1
+atishelma ID: 1656526   2/1  06:15      _      2      _      2 1656526.0-1
+atishelma ID: 1656527   2/1  06:16      _    106    894   1000 1656527.0-999
+atishelma ID: 1656528   2/1  06:16      _      _    250    250 1656528.0-249
+atishelma ID: 1656529   2/1  06:16      _      _    250    250 1656529.0-249
+
+Total for query: 1565 jobs; 0 completed, 0 removed, 1394 idle, 171 running, 0 held, 0 suspended 
+Total for atishelma: 1565 jobs; 0 completed, 0 removed, 1394 idle, 171 running, 0 held, 0 suspended 
+Total for all users: 1567 jobs; 0 completed, 0 removed, 1394 idle, 173 running, 0 held, 0 suspended
 ```
 
 ______________________________
