@@ -181,6 +181,8 @@ Run everything over HTCondor:
 
 To run a kappa lambda scan you need to modify the workspace:
 
+(example xml file for this: [reference](https://gitlab.cern.ch/hh4b/hh4b-vbf-limits/-/blob/updateAllSyst_parameterized/xml/modify_hh4b_for_H_HH.xml?ref_type=heads))
+
 ```
 git clone ssh://git@gitlab.cern.ch:7999/clcheng/quickstats.git
 cd quickstats
@@ -192,9 +194,9 @@ quickstats modify_ws -i modify_ws.xml --input_workspace  ../CharmCutCode/run/tes
 Make kl scan:
 
 ```
-quickstats likelihood_scan -i WS_combined_test_ws_model.root -p "mu_Hbb=0.9_1.1_0.005" -d asimovData
+quickstats likelihood_scan -i WS_combined_test_ws_model.root -p "d_kl=0.9_1.1_0.005" -d asimovData
 cd ../Results
-python3 plot.py --input /usatlas/u/atishelma/FCC/quickstats/likelihood_scan/mu_Hbb.json --poi d_kl --NoInteractiveMode
+python3 plot.py --input /usatlas/u/atishelma/FCC/quickstats/likelihood_scan/d_kl.json --poi d_kl --NoInteractiveMode
 ```
 
 <details>
