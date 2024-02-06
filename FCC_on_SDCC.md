@@ -175,6 +175,23 @@ Run everything over HTCondor:
 
 ## Statistical interpretation
 
+To run a kappa lambda scan you need to modify the workspace:
+
+```
+git clone ssh://git@gitlab.cern.ch:7999/clcheng/quickstats.git
+cd quickstats
+pip3 install --user quickstats
+quickstats compile
+quickstats modify_ws -i modify_ws.xml --input_workspace  ../CharmCutCode/run/test_ws/WS_combined_test_ws_model.root
+```
+
+Make kl scan:
+
+```
+quickstats likelihood_scan -i WS_combined_test_ws_model.root -p "mu_Hbb=0.9_1.1_0.005" -d asimovData
+cd ../Results
+python3 plot.py --input /usatlas/u/atishelma/FCC/quickstats/likelihood_scan/mu_Hbb.json --poi d_kl --NoInteractiveMode
+```
 
 ______________________________
 ______________________________
