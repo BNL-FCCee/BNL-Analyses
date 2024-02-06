@@ -160,8 +160,11 @@ Run over HTCondor:
 
 Create a workspace from one file locally to make sure things are working properly:
 
+(Is this expected to crash if a category's yield is zero? Maybe true if it's zero for all processes combined)
+
 ```
 makeWS --jsonConfig ../source/WSMaker/data/ZHAllHadConfig_test.json --inputFile wzp6_ee_ccH_Hbb_ecm240.root --outputDir test_ws
+hist2workspace <wsfolder>/XML/driver.xml  
 ```
 
 Run everything over HTCondor:
@@ -171,6 +174,7 @@ Run everything over HTCondor:
 ```
 
 ## Statistical interpretation
+
 
 ______________________________
 ______________________________
