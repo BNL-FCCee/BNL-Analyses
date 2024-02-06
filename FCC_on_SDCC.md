@@ -194,7 +194,7 @@ quickstats modify_ws -i modify_ws.xml --input_workspace  ../CharmCutCode/run/tes
 Make kl scan:
 
 ```
-quickstats likelihood_scan -i WS_combined_test_ws_model.root -p "d_kl=0.9_1.1_0.005" -d asimovData
+quickstats likelihood_scan -i WS_combined_test_ws_model.root -p "d_kl=-5_5_1" -d asimovData
 cd ../Results
 python3 plot.py --input /usatlas/u/atishelma/FCC/quickstats/likelihood_scan/d_kl.json --poi d_kl --NoInteractiveMode
 ```
