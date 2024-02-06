@@ -156,6 +156,20 @@ Run over HTCondor:
 
 ```
 
+## Workspaces
+
+Create a workspace from one file locally to make sure things are working properly:
+
+```
+makeWS --jsonConfig ../source/WSMaker/data/ZHAllHadConfig_test.json --inputFile wzp6_ee_ccH_Hbb_ecm240.root --outputDir test_ws
+```
+
+Run everything over HTCondor:
+
+```
+
+```
+
 ## Statistical interpretation
 
 ______________________________
