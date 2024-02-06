@@ -193,9 +193,8 @@ cd ../Results
 python3 plot.py --input /usatlas/u/atishelma/FCC/quickstats/likelihood_scan/mu_Hbb.json --poi d_kl --NoInteractiveMode
 ```
 
-______________________________
-______________________________
-______________________________
+<details>
+  <summary>Extra information</summary>
 
 ## Extra information
 
@@ -260,3 +259,5 @@ Run over everything with condor:
 ```
 
 ```
+
+</details>
