@@ -84,7 +84,10 @@ condor_q
 condor_q -batch
 ```
 
-from a full production of many processes, you should see something like:
+from a full production of many processes, you should see something like this:
+
+<details>
+  <summary>Condor output</summary>
 
 ```
 [spar0103] /usatlas/u/atishelma/FCC/FCCAnalyses > condor_q -batch
@@ -132,6 +135,7 @@ Total for query: 1565 jobs; 0 completed, 0 removed, 1394 idle, 171 running, 0 he
 Total for atishelma: 1565 jobs; 0 completed, 0 removed, 1394 idle, 171 running, 0 held, 0 suspended 
 Total for all users: 1567 jobs; 0 completed, 0 removed, 1394 idle, 173 running, 0 held, 0 suspended
 ```
+</details>
 
 You can also monitor your condor jobs here:
 
