@@ -139,7 +139,22 @@ https://monitoring.sdcc.bnl.gov/grafana/d/000000006/tier-3?orgId=1&from=now-24h&
 
 ![grafana screenshot](Images/condor_grafana_screenshot.png)
 
-## Selections and categorization
+## Selections, categorization, histograms
+
+Run [`CharmCutCode`](https://gitlab.cern.ch/sabidi/CharmCutCode/-/tree/Zcc_SelfCoupling?ref_type=heads) (to be moved to this Github organization). Quick start, after following setup instructions in repository:
+
+Run one file, output from previous step, locally to make sure things are working:
+
+```
+cd CharmCutCode/run
+runAnalysis --nEvents 1000 --inputFileList /usatlas/atlas01/atlasdisk/users/atishelma/ZHadronic_4JetReco/stage1/wzp6_ee_ccH_Hbb_ecm240/chunk_0.root --analType ZHAllHad --sampleName wzp6_ee_ccH_Hbb_ecm240 --processName Hbb --SOWJSONfile ../source/CharmCutCode/data/FCCee_procDict_winter2023_IDEA.json --outputFileName wzp6_ee_ccH_Hbb_ecm240.root
+```
+
+Run over HTCondor:
+
+```
+
+```
 
 ## Statistical interpretation
 
