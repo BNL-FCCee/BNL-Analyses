@@ -157,7 +157,7 @@ runAnalysis --nEvents 1000 --inputFileList /usatlas/atlas01/atlasdisk/users/atis
 Run over HTCondor:
 
 ```
-
+python3 ../source/CharmCutCode/submission/submit.py --inputFolder /usatlas/atlas01/atlasdisk/users/atishelma/ZHadronic_4JetReco/stage1/ --outputFolder /usatlas/u/atishelma/FCC/CharmCutCode/run/output/ --doZHAllHad --submitCondor
 ```
 
 ## Workspaces
@@ -171,10 +171,19 @@ makeWS --jsonConfig ../source/WSMaker/data/ZHAllHadConfig_test.json --inputFile 
 hist2workspace <wsfolder>/XML/driver.xml  
 ```
 
-Run everything over HTCondor:
+Or first `hadd` all of the outputs from the previous step:
 
 ```
+cd output
+hadd combined.root ./*/*
+```
 
+then make the WS:
+
+```
+cd ..
+makeWS --jsonConfig ../source/WSMaker/data/ZHAllHadConfig.json --inputFile output/combined.root --outputDir ws
+hist2workspace ws/XML/driver.xml
 ```
 
 ## Statistical interpretation
@@ -194,9 +203,18 @@ quickstats modify_ws -i modify_ws.xml --input_workspace  ../CharmCutCode/run/tes
 Make kl scan:
 
 ```
+pip3 install --user quickstats
 quickstats likelihood_scan -i WS_combined_test_ws_model.root -p "d_kl=-5_5_1" -d asimovData
 cd ../Results
 python3 plot.py --input /usatlas/u/atishelma/FCC/quickstats/likelihood_scan/d_kl.json --poi d_kl --NoInteractiveMode
+```
+
+Make signal strength scan of the Higgs coupling of your choosing:
+
+```
+quickstats likelihood_scan -i ../CharmCutCode/run/ws/WS_combined_ws_model.root  -p "mu_Hbb=0.9_1.1_0.01" -d asimovData
+cd ../Results
+python3 plot.py --input ../quickstats/likelihood_scan/mu_Hbb.json --poi mu_Hbb --NoInteractiveMode
 ```
 
 <details>
