@@ -217,6 +217,14 @@ cd ../Results
 python3 plot.py --input ../quickstats/likelihood_scan/mu_Hbb.json --poi mu_Hbb --NoInteractiveMode
 ```
 
+Make all scans:
+
+```
+python3 MakeAllScans.py
+cd ../Results
+python3 MakeAllPlots.py
+```
+
 <details>
   <summary>Extra information</summary>
 
