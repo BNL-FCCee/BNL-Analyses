@@ -198,6 +198,7 @@ cd CharmCutCode/run
 source rebuild.sh
 cd quickstats
 pip3 install --user quickstats
+source setup.sh
 quickstats compile
 quickstats modify_ws -i modify_ws.xml --input_workspace  ../CharmCutCode/run/test_ws/WS_combined_test_ws_model.root
 ```
