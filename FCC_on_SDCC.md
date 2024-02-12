@@ -200,16 +200,15 @@ cd quickstats
 pip3 install --user quickstats
 source setup.sh
 quickstats compile
-quickstats modify_ws -i modify_ws.xml --input_workspace  ../CharmCutCode/run/test_ws/WS_combined_test_ws_model.root
+quickstats modify_ws -i modify_ws_klambda.xml --input_workspace ../CharmCutCode/run/ws/WS_combined_ws_model.root
 ```
 
 Make kl scan:
 
 ```
-pip3 install --user quickstats
-quickstats likelihood_scan -i WS_combined_test_ws_model.root -p "d_kl=-5_5_1" -d asimovData
+quickstats likelihood_scan -i WS_combined_ws_model_kl.root -p "klambda=0_2_0.01" -d asimovData
 cd ../Results
-python3 plot.py --input /usatlas/u/atishelma/FCC/quickstats/likelihood_scan/d_kl.json --poi d_kl --NoInteractiveMode
+python3 plot.py --input /usatlas/u/atishelma/FCC/quickstats/likelihood_scan/klambda.json --poi klambda --NoInteractiveMode
 ```
 
 Make signal strength scan of the Higgs coupling of your choosing:
