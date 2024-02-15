@@ -1,5 +1,7 @@
 # FCC on SDCC
 
+Corresponding [`FCCAnalyses` branch](https://github.com/BNL-FCCee/FCCAnalyses).
+
 ## Ntuple production
 
 Quickstart:
