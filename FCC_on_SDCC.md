@@ -235,6 +235,29 @@ python3 MakeAllPlots.py
 ```
 
 <details>
+  <summary>Running 2D plotting</summary>
+</details>
+
+Testing some 2D plotting code we got from the FCC workshop.
+
+```
+fccanalysis run examples/FCCee/higgs/width/4jets/stage1/analysis_stage1.py --output test.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hcc_ecm240/events_056080797.root --nev 10
+mv test.root testFiles
+fccanalysis run examples/FCCee/higgs/width/4jets/stage2/Zleptonic.py --files-list testFiles/test.root
+python3 examples/FCCee/higgs/width/4jets/EventDisplays.py 
+```
+
+then from a new spar machine session:
+
+```
+source /cvmfs/sw.hsf.org/key4hep/setup.sh
+cd FCCAnalyses
+python3 examples/FCCee/higgs/width/4jets/EventDisplays.py 
+```
+
+Should make plots.
+
+<details>
   <summary>Extra information</summary>
 
 ## Extra information
