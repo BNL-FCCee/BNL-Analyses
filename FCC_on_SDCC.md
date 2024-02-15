@@ -236,8 +236,6 @@ python3 MakeAllPlots.py
 
 <details>
   <summary>Running 2D plotting</summary>
-</details>
-
 Testing some 2D plotting code we got from the FCC workshop.
 
 ```
@@ -256,6 +254,7 @@ python3 examples/FCCee/higgs/width/4jets/EventDisplays.py
 ```
 
 Should make plots.
+</details>
 
 <details>
   <summary>Extra information</summary>
