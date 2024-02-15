@@ -238,11 +238,16 @@ python3 MakeAllPlots.py
   <summary>Running 2D plotting</summary>
 Testing some 2D plotting code we got from the FCC workshop.
 
+Set up:
+
 ```
-fccanalysis run examples/FCCee/higgs/width/4jets/stage1/analysis_stage1.py --output test.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hcc_ecm240/events_056080797.root --nev 10
-mv test.root testFiles
-fccanalysis run examples/FCCee/higgs/width/4jets/stage2/Zleptonic.py --files-list testFiles/test.root
-python3 examples/FCCee/higgs/width/4jets/EventDisplays.py 
+cd FCCAnalyses
+mkdir 2DPlotting
+```
+
+```
+fccanalysis run examples/FCCee/higgs/width/4jets/stage1/analysis_stage1.py --output 2DPlotting/stage1/ccH_Hbb.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hbb_ecm240/events_180562176.root --nev 10
+fccanalysis run examples/FCCee/higgs/width/4jets/stage2/Zleptonic.py --files-list 2DPlotting/stage1/ccH_Hbb.root
 ```
 
 then from a new spar machine session:
