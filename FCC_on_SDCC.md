@@ -54,7 +54,7 @@ root -l <outputDir>/wzp6_ee_ccH_Hcc_ecm240.root
 to submit on `HTCondor`, edit the `ZH_Hadronic_stage1.py` configuration file parameters to the desired values, for example:
 
 ```
-sys.path.append("/usatlas/u/<BNLusername>/FCC_at_BNL/FCCAnalyses/") # note this must be included to have access to the FCCAnalyses framework from any directory when you run over condor. Make sure you do not have any extra characters e.g. spaces in the appended path
+sys.path.append("/usatlas/u/<BNLusername>/FCC_at_BNL/FCCAnalyses/")
 batch = 1 # use HTCondor
 EOSoutput = 0 # output to EOS
 JobName = "ZHadronic_4JetReco" # job name used for output directory
@@ -62,7 +62,15 @@ njets = 4 # number of jets in exclusive reclustering
 outputDir   = f"/usatlas/atlas01/atlasdisk/users/<BNLclusterUsername>/{JobName}/stage1/"
 ```
 
-and in the same file, choose the samples to run over, for example just one ZH process:
+Important: You must update the `sys.path.append()` line to include the path to your `FCCAnalyses` directory, e.g. something like:
+
+```
+sys.path.append("/usatlas/u/<BNLusername>/FCC_at_BNL/FCCAnalyses/")
+```
+
+This must be included to have access to the FCCAnalyses framework from any directory when you run over condor. Make sure you do not have any extra characters e.g. spaces in the appended path.
+
+in the same file, choose the samples to run over, for example just one ZH process:
 
 ```
 processList = {
