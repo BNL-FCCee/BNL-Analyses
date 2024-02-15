@@ -37,11 +37,9 @@ cd FCCAnalyses
 source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/*/setup.sh
 source setup.sh
 fccanalysis build
-...
-model_dir = "<path/to/repo>/FCCAnalyses"
 ```
 
-change `outputDir` variable in `ZH_Hadronic_stage1.py` to desired output location, then process a few files:
+change `outputDir` variable in `ZH_Hadronic_stage1.py` to desired output location, and change `model_dir` to your current directory in order to access the `.json` and `.onnx` files for flavour tagging, e.g. `"<path/to/repo>/FCCAnalyses"`, then process a few files:
 
 ```
 fccanalysis run ZH_Hadronic_stage1.py --output wzp6_ee_ccH_Hcc_ecm240.root --files-list /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_ee_ccH_Hcc_ecm240/events_056080797.root --nev 10
@@ -56,6 +54,7 @@ root -l <outputDir>/wzp6_ee_ccH_Hcc_ecm240.root
 to submit on `HTCondor`, edit the `ZH_Hadronic_stage1.py` configuration file parameters to the desired values, for example:
 
 ```
+sys.path.append("/usatlas/u/<BNLusername>/FCC_at_BNL/FCCAnalyses/") # note this must be included to have access to the FCCAnalyses framework from any directory when you run over condor. Make sure you do not have any extra characters e.g. spaces in the appended path
 batch = 1 # use HTCondor
 EOSoutput = 0 # output to EOS
 JobName = "ZHadronic_4JetReco" # job name used for output directory
