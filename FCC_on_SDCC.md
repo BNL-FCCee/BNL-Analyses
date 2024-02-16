@@ -240,6 +240,7 @@ python3 MakeAllPlots.py
   <summary>Running 2D plotting</summary>
 Testing some 2D plotting code we got from the FCC workshop.
 
+[`Our version of the code for Z(qq)H(qq)`](https://github.com/BNL-FCCee/FCCAnalyses/tree/JetReclustering)
 [`Higgs width code`](https://github.com/inescombes/FCCAnalyses/tree/width/examples/FCCee/higgs/width/4jets)
 
 Set up:
