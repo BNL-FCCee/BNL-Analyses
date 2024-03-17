@@ -204,7 +204,7 @@ To run a kappa lambda scan you need to modify the workspace:
 ```
 git clone ssh://git@gitlab.cern.ch:7999/clcheng/quickstats.git
 cd CharmCutCode/run
-source rebuild.sh
+source resetup.sh
 cd quickstats
 pip3 install --user quickstats
 source setup.sh
