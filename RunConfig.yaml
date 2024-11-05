@@ -1,6 +1,0 @@
-# configuration file 
-
-batch: 1
-EOSoutput: 1
-JobName: "ZccH_4JetReco_MaxChunks"
-njets: 4
