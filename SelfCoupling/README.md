@@ -24,4 +24,10 @@ source SetupAll.sh
 
 ## Run self-coupling
 
-At this point you should have the environment properly set up.
+At this point you should have the environment properly set up. The next steps are:
+
+- Add the `RooWorkspaces` you want to alter in the `workspaces` directory
+- Run the `MakeXML_SMEFT.py` script. Example command is `python3 MakeXML_SMEFT.py --inFile workspaces/{variation}.root --outFile workspaces_modified/{variation}_modified.root --outXMLFile XML/{variation}.xml` where `variation` is a label used for your workspace name and associated files. This should create an xml file used to add the CPhi SMEFT parameter to your workspace and parameterize the yields of each category.
+- Run the `modify_ws` step of `quickstats` in order to update the original workspace using the XML file you just created. Example command is `quickstats modify_ws -i XML/{variation}.xml --input_workspace workspaces/{variation}.root`.
+- Run a likelihood scan using the updated workspace. Example command is `quickstats likelihood_scan -i workspaces_modified/{variation}_modified.root -p "Cphi=-3_3_0.1" -d asimovData --outdir {variation}`
+- Plot the scan. `cd Plots` then example command is `python3 plot.py --inputs {baseDir}FSR_studies_IDEA_BASE/Cphi.json,{baseDir}FSR_studies_IDEA_nodndx_7labels/Cphi.json,{baseDir}FSR_studies_IDEA_noTOF_7labels/Cphi.json --poi Cphi --NoInteractiveMode --labels FSR_studies_IDEA_BASE{ext},FSR_studies_IDEA_nodndx_7labels{ext},FSR_studies_IDEA_noTOF_7labels{ext} --xmin -1 --xmax 1`
