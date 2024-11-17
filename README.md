@@ -4,6 +4,7 @@ The purpose of this repository is to keep track of analysis configurations to pe
 
 * Higgs to invisible
 * Z(cc)H
+* Higgs self-coupling interpretation
 
 ## Initial Setup
 
