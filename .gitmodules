@@ -4,6 +4,3 @@
 [submodule "FCCAnalyses_BNL_Dev"]
 	path = FCCAnalyses_BNL_Dev
 	url = https://github.com/BNL-FCCee/FCCAnalyses.git
-[submodule "FCCeePostCutCode"]
-	path = FCCeePostCutCode
-	url = https://github.com/BNL-FCCee/FCCeePostCutCode.git
