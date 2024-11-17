@@ -1,4 +1,5 @@
 mkdir -p build
+mkdir -p run
 cd build
 source ../source/setup.sh
 cmake ../source

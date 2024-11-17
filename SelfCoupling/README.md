@@ -42,6 +42,8 @@ source SetupAll.sh
 
 At this point you should have the environment properly set up. The next steps are:
 
+Note - in order to run, you will need RooWorkspaces with the proper category and parameter namings:
+
 - Add the `RooWorkspaces` you want to alter in the `workspaces` directory
 - Run the `MakeXML_SMEFT.py` script. Example command is `python3 MakeXML_SMEFT.py --inFile workspaces/{variation}.root --outFile workspaces_modified/{variation}_modified.root --outXMLFile XML/{variation}.xml` where `variation` is a label used for your workspace name and associated files. This should create an xml file used to add the CPhi SMEFT parameter to your workspace and parameterize the yields of each category.
 - Run the `modify_ws` step of `quickstats` in order to update the original workspace using the XML file you just created. Example command is `quickstats modify_ws -i XML/{variation}.xml --input_workspace workspaces/{variation}.root`.
