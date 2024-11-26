@@ -36,7 +36,7 @@ set up:
 
 ```
 cd FCCAnalyses
-source /cvmfs/sw.hsf.org/key4hep/releases/2023-06-05-fcchh/x86_64-centos7-gcc12.2.0-opt/key4hep-stack/*/setup.sh
+source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2024-03-10
 source setup.sh
 fccanalysis build
 ```
