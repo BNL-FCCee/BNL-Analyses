@@ -1,0 +1,53 @@
+workspaces:
+
+/atlasgpfs01/usatlas/workarea/ivelisce/FCCeeNote/jjHjj_Sept24/stage3/
+
+# SMEFT
+
+## FSR_studies_IDEA_BASE
+python3 MakeXML_SMEFT.py --inFile workspaces/FSR_studies_IDEA_BASE.root --outFile workspaces_modified/FSR_studies_IDEA_BASE_modified.root --outXMLFile XML/FSR_studies_IDEA_BASE.xml
+quickstats modify_ws -i XML/FSR_studies_IDEA_BASE.xml --input_workspace workspaces/FSR_studies_IDEA_BASE.root 
+quickstats likelihood_scan -i workspaces_modified/FSR_studies_IDEA_BASE_modified.root -p "Cphi=-5_5_0.1" -d asimovData --outdir FSR_studies_IDEA_BASE
+
+## FSR_studies_IDEA_nodndx
+python3 MakeXML_SMEFT.py --inFile workspaces/FSR_studies_IDEA_nodndx.root --outFile workspaces_modified/FSR_studies_IDEA_nodndx_modified.root --outXMLFile XML/FSR_studies_IDEA_nodndx.xml
+quickstats modify_ws -i XML/FSR_studies_IDEA_nodndx.xml --input_workspace workspaces/FSR_studies_IDEA_nodndx.root 
+quickstats likelihood_scan -i workspaces_modified/FSR_studies_IDEA_nodndx_modified.root -p "Cphi=-5_5_0.1" -d asimovData --outdir FSR_studies_IDEA_nodndx
+
+## FSR_studies_IDEA_noTOF
+python3 MakeXML_SMEFT.py --inFile workspaces/FSR_studies_IDEA_noTOF.root --outFile workspaces_modified/FSR_studies_IDEA_noTOF_modified.root --outXMLFile XML/FSR_studies_IDEA_noTOF.xml
+quickstats modify_ws -i XML/FSR_studies_IDEA_noTOF.xml --input_workspace workspaces/FSR_studies_IDEA_noTOF.root 
+quickstats likelihood_scan -i workspaces_modified/FSR_studies_IDEA_noTOF_modified.root -p "Cphi=-5_5_0.1" -d asimovData --outdir FSR_studies_IDEA_noTOF
+
+## FSR_studies_IDEA_PID
+python3 MakeXML_SMEFT.py --inFile workspaces/FSR_studies_IDEA_PID.root --outFile workspaces_modified/FSR_studies_IDEA_PID_modified.root --outXMLFile XML/FSR_studies_IDEA_PID.xml
+quickstats modify_ws -i XML/FSR_studies_IDEA_PID.xml --input_workspace workspaces/FSR_studies_IDEA_PID.root 
+quickstats likelihood_scan -i workspaces_modified/FSR_studies_IDEA_PID_modified.root -p "Cphi=-5_5_0.1" -d asimovData --outdir FSR_studies_IDEA_PID
+
+# kl
+
+## FSR_studies_IDEA_BASE
+python3 MakeXML.py --inFile workspaces/FSR_studies_IDEA_BASE.root --outFile workspaces_modified/FSR_studies_IDEA_BASE_modified_kl.root --outXMLFile XML/FSR_studies_IDEA_BASE_kl.xml --parameterization kl
+quickstats modify_ws -i XML/FSR_studies_IDEA_BASE_kl.xml --input_workspace workspaces/FSR_studies_IDEA_BASE.root 
+quickstats likelihood_scan -i workspaces_modified/FSR_studies_IDEA_BASE_modified_kl.root -p "kl=-5_5_0.1" -d asimovData --outdir FSR_studies_IDEA_BASE_kl
+
+# Plot
+
+python3 Plots/plot.py --inputs /direct/usatlas+u/atishelma/document_Selfcoupling/BNL-Analyses/SelfCoupling/FSR_studies_IDEA_BASE_kl/kl.json --poi kl --NoInteractiveMode --labels base --xmin -5 --xmax 5
+
+python3 Plots/plot.py --inputs /direct/usatlas+u/atishelma/document_Selfcoupling/BNL-Analyses/SelfCoupling/FSR_studies_IDEA_BASE/Cphi.json,/direct/usatlas+u/atishelma/document_Selfcoupling/BNL-Analyses/SelfCoupling/FSR_studies_IDEA_nodndx/Cphi.json,/direct/usatlas+u/atishelma/document_Selfcoupling/BNL-Analyses/SelfCoupling/FSR_studies_IDEA_noTOF/Cphi.json,/direct/usatlas+u/atishelma/document_Selfcoupling/BNL-Analyses/SelfCoupling/FSR_studies_IDEA_PID/Cphi.json --poi Cphi --NoInteractiveMode --labels base,nodndx,noTOF,PerfectPID --xmin -1 --xmax 1
+
+
+## FSR_studies_IDEA_shiftVXDr_plus500um_7labels
+python3 MakeXML_SMEFT.py --inFile workspaces/FSR_studies_IDEA_shiftVXDr_plus500um_7labels.root --outFile workspaces_modified/FSR_studies_IDEA_shiftVXDr_plus500um_7labels_modified.root --outXMLFile XML/FSR_studies_IDEA_shiftVXDr_plus500um_7labels.xml
+quickstats modify_ws -i XML/FSR_studies_IDEA_shiftVXDr_plus500um_7labels.xml --input_workspace workspaces/FSR_studies_IDEA_shiftVXDr_plus500um_7labels.root 
+quickstats likelihood_scan -i workspaces_modified/FSR_studies_IDEA_shiftVXDr_plus500um_7labels_modified.root -p "Cphi=-5_5_0.1" -d asimovData --outdir FSR_studies_IDEA_shiftVXDr_plus500um_7labels
+
+
+# Plot
+python3 Plots/plot.py --inputs /direct/usatlas+u/atishelma/document_Selfcoupling/BNL-Analyses/SelfCoupling/FSR_studies_IDEA_BASE/Cphi.json,/direct/usatlas+u/atishelma/document_Selfcoupling/BNL-Analyses/SelfCoupling/FSR_studies_IDEA_nodndx_7labels/Cphi.json --poi Cphi --NoInteractiveMode --labels base,nodndx --xmin -3 --xmax 3
+
+# Plot 
+cd Results
+python3 plot.py --inputs /direct/usatlas+u/atishelma/FCC/quickstats/SMEFT/base/Cphi.json,/direct/usatlas+u/atishelma/FCC/quickstats/SMEFT/worsenedResolution/Cphi.json --poi Cphi --NoInteractiveMode --labels base,65pcworse --xmin -3 --xmax 3
+

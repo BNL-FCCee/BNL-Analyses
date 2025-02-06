@@ -13,7 +13,8 @@ matplotlib.use('Agg')
 
 def Compute_XS(Cphi, computeDelta=False):
 
-    updated_XS = (1 + 0.017 * ((1 - 0.47*Cphi) - 1)) / (1 + 0.00154 * ((1 - 0.47*Cphi) - 1)**2)
+#     updated_XS = (1 + 0.017 * ((1 - 0.47*Cphi) - 1)) / (1 + 0.00154 * ((1 - 0.47*Cphi) - 1)**2)
+    updated_XS = (1 - 0.00699 * Cphi)
     if(computeDelta): 
         updated_XS = abs(1 - updated_XS)*100.
     return updated_XS
